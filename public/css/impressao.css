@@ -1,0 +1,165 @@
+@page{
+  margin: 2mm;
+}
+
+html { font-size: 12pt; }
+
+.folha { background-color: #ccc; padding: 0.5em; }
+.a4_vertical { width: 793px; height: 1122px; }
+.a4_horizontal { width: 1122px; height: 793px; }
+
+body{
+  margin: 0 !important;
+  padding: 0;
+}
+
+.topo{
+  font-family: Arial;
+}
+
+.brasao{
+  margin-left: 2em;
+  float: left;
+}
+.cabecalho{
+  margin-left: 6em;
+  float: left;
+  position: relative;
+  height: 5em;
+  width: 50%;
+}
+.pcdp{
+  margin-left: 1em;
+  width: 97%;
+}
+
+.tudo{
+  margin-left: 3em;
+  margin-right: 3em;
+  font-family: Arial;
+  font-size: 12px;
+}
+
+.proponho{
+  margin-left: 5em;
+  float: left;
+}
+.autorizo {
+  margin-left: 5em;
+  float: left;
+}
+
+.tabela1{
+  border-style: solid;
+}
+
+.c2{
+  float: left;
+  padding-right: 10em;
+}
+.c3{
+  border-left-style: solid;
+  float: left;
+  border-right-style: solid;
+  padding-right: 8em;
+}
+
+.tabela2{
+  border-style: solid;
+  border-top: none;
+}
+
+.c5{
+  float: left;
+  padding-right: 4em;
+}
+.c6{
+  border-left-style: solid;
+  float: left;
+  padding-right: 4em;
+}
+.c7{
+  border-left-style: solid;
+  float: left;
+  border-right-style: solid;
+  padding-right: 4em;
+}
+.c8{
+  float: left;
+  border-right-style: solid;
+  padding-right: 4em;
+}
+
+.tabela3{
+  border-style: solid;
+  border-top: none;
+}
+
+.c10{
+  float: left;
+  padding-right: 1em;
+  font-size: 10px;
+}
+.c11{
+  border-left-style: solid;
+  float: left;
+  padding-right: 1em;
+}
+.c12{
+  border-left-style: solid;
+  float: left;
+  border-right-style: solid;
+  padding-right: 2em;
+}
+.tabela4{
+  border-style: solid;
+  border-top: none;
+}
+.tabela5{
+  border-style: solid;
+  border-top: none;
+}
+
+.c15{
+  float: left;
+  padding-right: 2em;
+}
+.c16{
+  border-left-style: solid;
+  float: left;
+  padding-right: 2em;
+  border-right-style: solid;
+}
+.c17{
+  padding-left: 1em;
+}
+.tabela6{
+  border-style: solid;
+  border-top: none;
+}
+.tabela7{
+  border-style: solid;
+  border-top: none;
+}
+.tabela8{
+  border-style: solid;
+  border-top: none;
+}
+.tabela9{
+  border-style: solid;
+  border-top: none;
+}
+.tabela10{
+  border-style: solid;
+  border-top: none;
+}
+.c22{
+  float: left;
+  padding-right: 2em;
+}
+.c23{
+  border-left-style: solid;
+  float: left;
+  padding-right: 2em;
+  border-right-style: solid;
+}
