@@ -10,6 +10,7 @@ class User extends Authenticatable
   use Notifiable;
   protected $connection = 'pgsql';
   protected $table = 'tb_pessoas';
+  protected $schema = 'public';
 
   protected $primaryKey = 'pesid';
 

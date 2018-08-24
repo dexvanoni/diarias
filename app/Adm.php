@@ -8,6 +8,7 @@ class Adm extends Model
 {
   protected $connection = 'pgsql';
   protected $table = 'tb_adm_diarias';
+  protected $schema = 'diarias';
 
   protected $fillable = ['pescodigo', 'pnome'];
 }

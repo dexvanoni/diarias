@@ -8,6 +8,7 @@ use App\Diaria;
 class Trecho extends Model
 {
   protected $connection = 'pgsql';
+  protected $schema = 'diarias';
 
   public function diarias()
     {

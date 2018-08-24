@@ -58,7 +58,7 @@ class LogInController extends Controller
         return redirect()->route('inicio');
       } else {
 
-        $saram = DB::table('tb_pessoas')
+        $saram = DB::table('public'. "." .'tb_pessoas')
         ->select('pescodigo')
         ->where('pescpf', '=', $usr)
         ->get();
@@ -88,7 +88,7 @@ class LogInController extends Controller
     //se não autentica no domínio, descomentar as linhas de baixo e comentar a de de cima
     //$usuario = User::where('pescodigo', '=', $request->get('pescodigo'))->first();
     //$senha = User::where('sasis_senha', '=', $request->get('password'))->first();
-    $posto = DB::table('tb_posto_graduacao')
+    $posto = DB::table('public'. "." .'tb_posto_graduacao')
     ->select('pgabrev')
     ->where('pgid', '=', $usuario->pespostograd)
     ->get();
@@ -99,22 +99,22 @@ class LogInController extends Controller
       return redirect()->action('HomeController@index');
     }
 
-    $valor1 = DB::table('tb_valores_diaria')
+    $valor1 = DB::table('diarias'. "." .'tb_valores_diaria')
     ->where([
       ['posto', '=', $posto],
       ['cidades', '=', 'val_br_am_rj']
       ])->get();
-      $valor2 = DB::table('tb_valores_diaria')
+      $valor2 = DB::table('diarias'. "." .'tb_valores_diaria')
       ->where([
         ['posto', '=', $posto],
         ['cidades', '=', 'val_bh_fl_pa_rc_sl_sp']
         ])->get();
-        $valor3 = DB::table('tb_valores_diaria')
+        $valor3 = DB::table('diarias'. "." .'tb_valores_diaria')
         ->where([
           ['posto', '=', $posto],
           ['cidades', '=', 'val_capitais']
           ])->get();
-          $valor4 = DB::table('tb_valores_diaria')
+          $valor4 = DB::table('diarias'. "." .'tb_valores_diaria')
           ->where([
             ['posto', '=', $posto],
             ['cidades', '=', 'val_cidades']
@@ -267,22 +267,22 @@ class LogInController extends Controller
               return redirect()->action('LogInController@volta_perfil');
             }
 
-            $valor1 = DB::table('tb_valores_diaria')
+            $valor1 = DB::table('diarias'. "." .'tb_valores_diaria')
             ->where([
               ['posto', '=', $posto],
               ['cidades', '=', 'val_br_am_rj']
               ])->get();
-              $valor2 = DB::table('tb_valores_diaria')
+              $valor2 = DB::table('diarias'. "." .'tb_valores_diaria')
               ->where([
                 ['posto', '=', $posto],
                 ['cidades', '=', 'val_bh_fl_pa_rc_sl_sp']
                 ])->get();
-                $valor3 = DB::table('tb_valores_diaria')
+                $valor3 = DB::table('diarias'. "." .'tb_valores_diaria')
                 ->where([
                   ['posto', '=', $posto],
                   ['cidades', '=', 'val_capitais']
                   ])->get();
-                  $valor4 = DB::table('tb_valores_diaria')
+                  $valor4 = DB::table('diarias'. "." .'tb_valores_diaria')
                   ->where([
                     ['posto', '=', $posto],
                     ['cidades', '=', 'val_cidades']
@@ -323,7 +323,7 @@ class LogInController extends Controller
                     $value = Session::get('peslogin');
 
                     $pesncompleto='';
-                    Session::put('pesncompleto', $usuario->pesncompleto);
+                    Session::put('pesncompleto', $usuario->pesncompleto);val_br_am_rj
                     $nomecompleto = Session::get('pesncompleto');
 
                     $pescodigo='';
@@ -433,22 +433,22 @@ class LogInController extends Controller
                       Session::put('administrador', $adm2);
                     }
 
-                    $valor1 = DB::table('tb_valores_diaria')
+                    $valor1 = DB::table('diarias'. "." .'tb_valores_diaria')
                     ->where([
                       ['posto', '=', $posto],
                       ['cidades', '=', 'val_br_am_rj']
                       ])->get();
-                      $valor2 = DB::table('tb_valores_diaria')
+                      $valor2 = DB::table('diarias'. "." .'tb_valores_diaria')
                       ->where([
                         ['posto', '=', $posto],
                         ['cidades', '=', 'val_bh_fl_pa_rc_sl_sp']
                         ])->get();
-                        $valor3 = DB::table('tb_valores_diaria')
+                        $valor3 = DB::table('diarias'. "." .'tb_valores_diaria')
                         ->where([
                           ['posto', '=', $posto],
                           ['cidades', '=', 'val_capitais']
                           ])->get();
-                          $valor4 = DB::table('tb_valores_diaria')
+                          $valor4 = DB::table('diarias'. "." .'tb_valores_diaria')
                           ->where([
                             ['posto', '=', $posto],
                             ['cidades', '=', 'val_cidades']

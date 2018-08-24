@@ -13,7 +13,7 @@ class CreateDiariasTable extends Migration
   */
   public function up()
   {
-    Schema::create('diarias', function (Blueprint $table) {
+    Schema::create('diarias.diarias', function (Blueprint $table) {
       $table->increments('id');
       $table->string('pcdp')->nullable();
       $table->string('sc')->nullable();

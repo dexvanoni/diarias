@@ -13,7 +13,7 @@ class CreateTrechosTable extends Migration
      */
     public function up()
     {
-        Schema::create('trechos', function (Blueprint $table) {
+        Schema::create('diarias.trechos', function (Blueprint $table) {
           $table->increments('id');
           $table->integer('diaria_id');
           $table->foreign('diaria_id')->references('id')->on('diarias')->onDelete('cascade');

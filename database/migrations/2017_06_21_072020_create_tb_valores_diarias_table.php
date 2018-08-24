@@ -13,7 +13,7 @@ class CreateTbValoresDiariasTable extends Migration
      */
     public function up()
     {
-        Schema::create('tb_valores_diaria', function (Blueprint $table) {
+        Schema::create('diarias.tb_valores_diaria', function (Blueprint $table) {
             $table->increments('id');
             $table->text('posto');
             $table->text('cidades');

@@ -8,5 +8,6 @@ class Pessoa extends Model
 {
   protected $connection = 'pgsql';
   protected $table = 'tb_posto_graduacao';
+  protected $schema = 'public';
 
 }

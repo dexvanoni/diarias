@@ -10,6 +10,7 @@ class Diaria extends Model
 {
   protected $connection = 'pgsql';
   protected $table = 'diarias';
+  protected $schema = 'diarias';
 
   public function trechos(){
     return $this->hasMany(Trecho::class);

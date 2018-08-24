@@ -13,7 +13,7 @@ class CreateTbAdmDiariasTable extends Migration
      */
     public function up()
     {
-        Schema::create('tb_adm_diarias', function (Blueprint $table) {
+        Schema::create('diarias.tb_adm_diarias', function (Blueprint $table) {
             $table->increments('id');
             $table->text('pnome');
             $table->text('pescodigo');
