@@ -77,6 +77,15 @@ class CreateDiariasTable extends Migration
       $table->float('dono')->nullable();
       $table->text('qtn_md')->nullable();
       $table->text('qtn_dc')->nullable();
+      $table->text('trechos')->nullable();
+      $table->text('ax_a')->nullable();
+      $table->text('ax_t')->nullable();
+      $table->text('concluido')->nullable();
+      $table->text('adicional_deslocamento')->nullable();
+      $table->text('total_acrescimos')->nullable();
+      $table->text('valor_total')->nullable();
+      $table->text('ck_valor_total')->nullable();
+      $table->text('tipo_transp')->nullable();
       $table->rememberToken();
       $table->timestamps();
     });

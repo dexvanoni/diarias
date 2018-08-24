@@ -45,8 +45,7 @@ body{
   float: left;
 }
 .autorizo {
-  margin-left: 5em;
-  float: left;
+
 }
 
 .tabela1{
@@ -141,25 +140,108 @@ body{
   border-style: solid;
   border-top: none;
 }
+
 .tabela8{
   border-style: solid;
   border-top: none;
 }
+.c18{
+  float: left;
+  font-size: 12px;
+  border-right-style: solid;
+  padding-right: 2em;
+}
+
 .tabela9{
   border-style: solid;
   border-top: none;
+}
+.c20{
+  float: left;
+  padding-right: 5em;
+}
+.c21{
+  border-left-style: solid;
+  border-right-style: solid;
+  float: left;
+  padding-right: 5em;
 }
 .tabela10{
   border-style: solid;
   border-top: none;
 }
-.c22{
-  float: left;
-  padding-right: 2em;
+.tabela11{
+  border-style: solid;
+  border-top: none;
 }
-.c23{
-  border-left-style: solid;
+.tabela12{
+  border-style: solid;
+  border-top: none;
+}
+.titulofacd{
+  float: right;
+  padding-left: 1em;
+}
+.tabela13{
+  border-style: solid;
+  border-top: none;
+}
+.tabela_ass{
+  border-style: none;
+}
+.tabela14{
+  border-style: solid;
+  border-top: none;
+}
+.tabela15{
+  border-style: solid;
+  border-top: none;
+  border-bottom: none;
+}
+.linha_computo{
+
+  border-bottom-style: solid;
+}
+.tabela16{
+  border-style: solid;
+  border-top: none;
+}
+.tabela17{
+  border-style: solid;
+  border-top: none;
+    border-top-style: solid;
+}
+.c26{
   float: left;
-  padding-right: 2em;
+  padding-right: 8em;
+  padding-top: 5px;
+
+}
+.c27{
+  border-left-style: solid;
   border-right-style: solid;
+  float: left;
+  padding-right: 1em;
+  border-top: none;
+}
+.homologacao{
+  border-style: solid;
+}
+.c30{
+  float: left;
+  padding-right: 8em;
+  border-bottom-style: solid;
+  padding-top: 5px;
+}
+.tb_computos{
+  border-collapse: collapse;
+  width: 716px;
+}
+.tb_computos tr td {
+  border:1px solid;
+  width: auto;
+  text-align: center;
+}
+.ordenador{
+  margin-left: 350px;
 }

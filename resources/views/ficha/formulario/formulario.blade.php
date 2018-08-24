@@ -228,7 +228,7 @@ $val4 = Session::get('val4');
   <div title="Digite os trechos aqui!" class="col-md-12">
     <div class="input-group">
       <span class="input-group-addon" id="basic-addon1">19</span>
-      {!! Form::textarea('trechos', null, array('rows'=>'3', 'class' => 'form-control', 'placeholder'=>'Digite todas as informações dos trechos percorridos')) !!}
+      {!! Form::textarea('trechos', null, array('rows'=>'3', 'class' => 'form-control', 'placeholder'=>'Digite todas as informações dos trechos percorridos.&#013;Nome das cidades, data de inicío com hora e data de término da missão com hora!&#013;*Ex.: Brasília - Manaus = 20/08/2018 09:00 a 22/08/2018 21:00 ')) !!}
     </div>
   </div>
 </div>
@@ -288,13 +288,13 @@ $val4 = Session::get('val4');
     </div>
 </div>
 <p></p>
-
+<label style="color: red">* As justificativas possuem o limite de 100 caracteres para preenchimento!</label>
 <!-- nona linha da tabela-->
 <div class="row">
   <div title="JUSTIFICATIVA DA MISSÃO EM FINAL DE SEMANA / FERIADO: (§ 2º, Art. 5º, do Dec. 5.992/2006)" class="col-md-12">
     <div class="input-group">
       <span class="input-group-addon" id="basic-addon1">25</span>
-      {!! Form::textarea('fim_semana', null, array('rows'=>'3', 'class' => 'form-control', 'placeholder'=>'JUSTIFICATIVA DA MISSÃO EM FINAL DE SEMANA / FERIADO: (§ 2º, Art. 5º, do Dec. 5.992/2006)')) !!}
+      {!! Form::textarea('fim_semana', null, array('maxlength'=>'100','rows'=>'3', 'class' => 'form-control', 'placeholder'=>'JUSTIFICATIVA DA MISSÃO EM FINAL DE SEMANA / FERIADO: (§ 2º, Art. 5º, do Dec. 5.992/2006)')) !!}
     </div>
   </div>
 </div>
@@ -304,7 +304,7 @@ $val4 = Session::get('val4');
   <div title="JUSTIFICATIVA DA CONVENIÊNCIA DO SERVIÇO: (Inciso 2.1.3, da ICA 177-42)" class="col-md-12">
     <div class="input-group">
       <span class="input-group-addon" id="basic-addon1">26</span>
-      {!! Form::textarea('conveniencia_servico', null, array('rows'=>'3', 'class' => 'form-control', 'placeholder'=>'JUSTIFICATIVA DA CONVENIÊNCIA DO SERVIÇO: (Inciso 2.1.3, da ICA 177-42)')) !!}
+      {!! Form::textarea('conveniencia_servico', null, array('maxlength'=>'100', 'rows'=>'3', 'class' => 'form-control', 'placeholder'=>'JUSTIFICATIVA DA CONVENIÊNCIA DO SERVIÇO: (Inciso 2.1.3, da ICA 177-42) - 100 caracteres')) !!}
     </div>
   </div>
 </div>
@@ -314,7 +314,7 @@ $val4 = Session::get('val4');
   <div title="JUSTIFICATIVA: (Art 1º, da Portaria 1348/GC4/2015)" class="col-md-12">
     <div class="input-group">
       <span class="input-group-addon" id="basic-addon1">27</span>
-      {!! Form::textarea('justificativa', null, array('rows'=>'3', 'class' => 'form-control', 'placeholder'=>'JUSTIFICATIVA: (Art 1º, da Portaria 1348/GC4/2015)')) !!}
+      {!! Form::textarea('justificativa', null, array('maxlength'=>'100', 'rows'=>'3', 'class' => 'form-control', 'placeholder'=>'JUSTIFICATIVA: (Art 1º, da Portaria 1348/GC4/2015)')) !!}
     </div>
   </div>
 </div>
@@ -326,7 +326,7 @@ $val4 = Session::get('val4');
 
   <div class="facd">
     <div class="row">
-      <h5><b>II - <sup>28</sup>FICHA DE APRESENTAÇÃO DE CONCESSÃO DE DIÁRIAS (FACD):</b></h5>
+      <h5><b>II - <sup>30</sup>FICHA DE APRESENTAÇÃO DE CONCESSÃO DE DIÁRIAS (FACD):</b></h5>
     </div>
     <p></p>
     <div class="row">
@@ -343,14 +343,13 @@ $val4 = Session::get('val4');
       </div>
       <!-- DIV abaixo só aparece se o radio (de cima) SIM for selecionado (jquery escrita no template) -->
       <div class="col-md-12" id="camposExtras">
-        {!! Form::textarea('justificativa_alteracao', null, array('rows'=>'3', 'class' => 'form-control', 'placeholder'=>'JUSTIFICATIVA:')) !!}
-        <h5>Campo Grande, {!! Form::text('dia', null, array('size'=>'3')) !!} &nbsp de &nbsp {!! Form::text('mes', null,array('size' => '15')) !!}&nbsp de 2017. Responsável pelo serviço: {!! Form::text('responsavel', null,array('size' => '20')) !!} </h5>
+        {!! Form::textarea('justificativa_alteracao', null, array('maxlength'=>'100', 'rows'=>'3', 'class' => 'form-control', 'placeholder'=>'JUSTIFICATIVA:')) !!}
+        <h5>Campo Grande, {!! Form::text('dia', null, array('size'=>'3')) !!} &nbsp de &nbsp {!! Form::text('mes', null,array('size' => '15')) !!}&nbsp de <?php echo date('Y');?>. Responsável pelo serviço: {!! Form::text('responsavel', null,array('size' => '20')) !!} </h5>
       </div>
     </div>
     </div>
-
-
-  <hr>
+<hr>
+<label style="color: red">* NÃO utilizar "vírgula" em campos numéricos, somente "ponto"! - Ex.: 1550.30 </label>
   <div style="border: 1px solid #D3D3D3; border-radius:3px" class="row">
     <center><h5><b>CÔMPUTO DE DIÁRIAS E ACRÉSCIMOS - POR LOCALIDADE</b></h5></center>
   </div>
@@ -517,7 +516,7 @@ $val4 = Session::get('val4');
   <div class="homologa">
     <div class="col-md-12">
       <div class="row">
-        <h5><b>III - <sup>29</sup>HOMOLOGAÇÃO:</b></h5>
+        <h5><b>III - <sup>31</sup>HOMOLOGAÇÃO:</b></h5>
       </div>
     </div>
     <br>
