@@ -323,7 +323,7 @@ class LogInController extends Controller
                     $value = Session::get('peslogin');
 
                     $pesncompleto='';
-                    Session::put('pesncompleto', $usuario->pesncompleto);val_br_am_rj
+                    Session::put('pesncompleto', $usuario->pesncompleto);
                     $nomecompleto = Session::get('pesncompleto');
 
                     $pescodigo='';
