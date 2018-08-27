@@ -345,10 +345,10 @@
   </div>
   <!--<button class="btn btn-primary" type="button" name="button" onclick="window.print();">Imprimir</button>-->
 </body>
-<!--<script>
+<script>
 $( document ).ready(function() {
 window.print();
 history.back();
 });
-</script>-->
+</script>
 </html>
