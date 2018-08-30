@@ -270,7 +270,7 @@
             <center>ORDENADOR DE DESPESAS</center>
           </div>
           <div class="c28">
-            <br>  <strong>TOTAL:  </strong><br> <br><strong> <span style="font-size: 16px"><center>{{ $diaria->resultado_total }}</center></span> </strong>
+            <br>  <strong>TOTAL:  </strong><br> <br><strong> <span style="font-size: 16px"><center>R$ {{ $diaria->resultado_total }}</center></span> </strong>
           </div>
         </div>
 

@@ -97,7 +97,7 @@
                 <ul class="list-inline list-small">
                   @if ($diarias->concluido == 'NÃO')
                     <li title="Editar">
-                      <a href="{{ route('ficha.edit', ['diarias' => $diarias->id, 'apresenta'=>'editando']) }}" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+                      <a href="{{ route('ficha.edita', ['diarias' => $diarias->id, 'apresenta'=>'editando']) }}" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
                     </li>
                     <li>|</li>
                     <li title="Imprimir">
@@ -113,7 +113,7 @@
                     </li>
                     @else
                       <li title="Ver">
-                        <a href="{{ route('ficha.edit', ['diarias' => $diarias->id, 'apresenta'=>'apresenta']) }}" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-open-file" aria-hidden="true"></span></a>
+                        <a href="{{ route('ficha.edita', ['diarias' => $diarias->id, 'apresenta'=>'apresenta']) }}" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-open-file" aria-hidden="true"></span></a>
                       </li>
                       <li>|</li>
                       <li title="Imprimir">

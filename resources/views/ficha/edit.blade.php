@@ -1,15 +1,16 @@
 @extends('template.template')
 @php
   $tela = 'edit';
-  $apresenta = $_GET['apresenta'];
+  //$apresenta = $_GET['apresenta'];
 @endphp
 
 @section('t')
-  @if ($apresenta == 'apresenta')
+  @if ( $apresenta == 'apresenta' )
     Ordem de Serviço - Nº: {{ $diaria->id }}
     @else
       Editar Ordem de Serviço - Nº: {{ $diaria->id }}
   @endif
+  
 @endsection
 
 @section('title')

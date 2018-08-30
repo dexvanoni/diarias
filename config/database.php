@@ -68,8 +68,8 @@ return [
 
         'pgsql' => [
             'driver' => 'pgsql',
-            'host' => env('DB_HOST', '127.0.0.1'),
-            'port' => env('DB_PORT', '5433'),
+            'host' => env('DB_HOST', '10.152.16.41'),
+            'port' => env('DB_PORT', '5432'),
             'database' => env('DB_DATABASE', 'sims_bacg'),
             'username' => env('DB_USERNAME', 'postgres'),
             'password' => env('DB_PASSWORD', '123456'),

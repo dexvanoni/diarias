@@ -89,15 +89,15 @@
               <td style="width: 25%" >
                 <ul class="list-inline list-small">
                   <li title="Editar">
-                    <a href="{{ route('ficha.edit', ['diarias' => $diarias->id, 'apresenta'=>'editando']) }}" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+                    <a href="{{ route('ficha.edita', ['diarias' => $diarias->id, 'apresenta'=>'editando']) }}" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
                   </li>
                   <li>|</li>
                   <li title="Imprimir">
-                    <a href="{{ route('ficha.impressao', ['oss' => $diarias->id]) }}" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-print" aria-hidden="true"></span></a>
+                    <a href="{{ route('ficha.impressao', ['diarias' => $diarias->id]) }}" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-print" aria-hidden="true"></span></a>
                   </li>
                   <li>|</li>
                   <li title="Apresentação">
-                    <a href="{{ route('ficha.edit', ['oss' => $diarias->id, 'apresenta' => 'apresenta']) }}" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span></a>
+                    <a href="{{ route('ficha.edita', ['diarias' => $diarias->id, 'apresenta' => 'apresenta']) }}" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span></a>
                   </li>
                 </ul>
               </td>

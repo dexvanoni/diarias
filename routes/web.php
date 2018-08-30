@@ -11,6 +11,8 @@
 |
 */
 
+//rota criada para a view de edição e apresentação receberem o GET. Alterar o DashboardController a função "edita"
+Route::get('ficha/edit/{id}/{apresenta}', array('uses' => 'DashboardController@edita', 'as' => 'ficha.edita'));
 //route to get the log in form
 Route::get('/', array('uses' => 'HomeController@index', 'as' => 'inicio'));
 

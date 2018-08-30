@@ -400,6 +400,8 @@ class ComposerStaticInitf7ac52142706d401c064b008fe701ff3
     );
 
     public static $classMap = array (
+        'AlterResultadoTotal' => __DIR__ . '/../..' . '/database/migrations/2018_08_28_123120_alter_resultado_total.php',
+        'AlterValorRestituicao' => __DIR__ . '/../..' . '/database/migrations/2018_08_28_123948_alter_valor_restituicao.php',
         'Cpdf' => __DIR__ . '/..' . '/dompdf/dompdf/lib/Cpdf.php',
         'CreateDiariasTable' => __DIR__ . '/../..' . '/database/migrations/2017_06_28_190336_create_diarias_table.php',
         'CreateTbAdmDiariasTable' => __DIR__ . '/../..' . '/database/migrations/2017_06_20_234543_create_tb_adm_diarias_table.php',

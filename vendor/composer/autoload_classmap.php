@@ -6,11 +6,8 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'AlterAddConcluido' => $baseDir . '/database/migrations/2018_08_17_153057_alter_add_concluido.php',
-    'AlterAddTipo' => $baseDir . '/database/migrations/2018_08_20_193138_alter_add_tipo.php',
-    'AlterAddTranps' => $baseDir . '/database/migrations/2018_08_17_151155_alter_add_tranps.php',
-    'AlterAddTrecho' => $baseDir . '/database/migrations/2018_08_17_145747_alter_add_trecho.php',
-    'AlterAddValores' => $baseDir . '/database/migrations/2018_08_20_122703_alter_add_valores.php',
+    'AlterResultadoTotal' => $baseDir . '/database/migrations/2018_08_28_123120_alter_resultado_total.php',
+    'AlterValorRestituicao' => $baseDir . '/database/migrations/2018_08_28_123948_alter_valor_restituicao.php',
     'Cpdf' => $vendorDir . '/dompdf/dompdf/lib/Cpdf.php',
     'CreateDiariasTable' => $baseDir . '/database/migrations/2017_06_28_190336_create_diarias_table.php',
     'CreateTbAdmDiariasTable' => $baseDir . '/database/migrations/2017_06_20_234543_create_tb_adm_diarias_table.php',
