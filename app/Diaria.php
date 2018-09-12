@@ -87,7 +87,11 @@ class Diaria extends Model
     'total_acrescimos',
     'valor_total',
     'ck_valor_total',
-    'tipo_transp'
+    'tipo_transp',
+    'chefe_im',
+    'ok_chefe_im',
+    'nm_chefe_im',
+    'subtotal'
   ];
 
 

@@ -32,7 +32,9 @@ class DashboardController extends Controller
     $this->valor = $valor;
   }
   public function dash(){
-    return view('dashboard.index');
+    $sar = Session::get('dono');
+    $usuario = User::where('pescodigo', '=', $sar)->first();
+    return view('dashboard.index', compact('usuario'));
   }
 
   public function store(Request $request){
@@ -53,6 +55,16 @@ class DashboardController extends Controller
 
   }
 
+  public function aprova()
+  {
+    $sar = Session::get('dono');
+    $diaria = DB::table('diarias')
+    ->where('chefe_im', '=', $sar)
+    ->paginate(10000);
+    //$diaria = Diaria::orderBy('id', 'DESC')->paginate(5);
+    return view('adm.aprova',compact('diaria'));
+
+  }
 
   public function index()
   {
@@ -105,7 +117,21 @@ class DashboardController extends Controller
     $ramal = Session::get('pesfonetrabramal');
     $administrador = Session::get('administrador');
 
-    return view('ficha.create', compact('administrador', 'nome_om', 'nome_banco', 'pessoa', 'pgrad', 'login', 'saram', 'cpf', 'datadenascimento', 'pemail', 'identidade', 'ramal', 'agencia', 'contacorrente'));
+    $posto = DB::table('public'. "." .'tb_pessoas')
+    ->whereIn('pespostograd', [15, 9, 10, 11, 4, 5, 8, 24, 27, 1, 3, 7, 2, 6])
+    ->orderBy('pesnguerra', 'asc')
+    ->get();
+
+    $select = [];
+    foreach ($posto as $postos) {
+      $p = DB::table('public'. "." .'tb_posto_graduacao')
+      ->select('pgabrev')
+      ->where('pgid', '=', $postos->pespostograd)
+      ->get();
+      $p = $p[0]->pgabrev;
+      $select[$postos->pescodigo] = $p. ' ' .$postos->pesnguerra. ' - ' .$postos->pesncompleto ;
+    }
+        return view('ficha.create', compact('administrador', 'nome_om', 'nome_banco', 'pessoa', 'pgrad', 'login', 'saram', 'cpf', 'datadenascimento', 'pemail', 'identidade', 'ramal', 'agencia', 'contacorrente', 'select'));
   }
 
 /*  public function edit($id, Request $request){
@@ -138,7 +164,31 @@ class DashboardController extends Controller
 
     $apresenta = $request->apresenta;
 
-    return view('ficha.edit', compact('diaria', 'administrador', 'apresenta'));
+    $posto = DB::table('public'. "." .'tb_pessoas')
+    ->whereIn('pespostograd', [15, 9, 10, 11, 4, 5, 8, 24, 27, 1, 3, 7, 2, 6])
+    ->orderBy('pesnguerra', 'asc')
+    ->get();
+
+    $select = [];
+    foreach ($posto as $postos) {
+      $p = DB::table('public'. "." .'tb_posto_graduacao')
+      ->select('pgabrev')
+      ->where('pgid', '=', $postos->pespostograd)
+      ->get();
+      $p = $p[0]->pgabrev;
+      $select[$postos->pescodigo] = $p. ' ' .$postos->pesnguerra. ' - ' .$postos->pesncompleto ;
+    }
+
+    $chefe = User::where('pescodigo', '=', $diaria->chefe_im)->first();
+    $nome_chefe = $chefe->pesncompleto;
+
+    $p_chefe = DB::table('public'. "." .'tb_posto_graduacao')
+    ->select('pgabrev')
+    ->where('pgid', '=', $chefe->pespostograd)
+    ->first();
+    $posto_chefe = $p_chefe->pgabrev;
+
+    return view('ficha.edit', compact('diaria', 'administrador', 'apresenta', 'select', 'posto_chefe', 'nome_chefe'));
   }
 
   public function show($id)
@@ -159,13 +209,37 @@ class DashboardController extends Controller
       throw new ModelNotFoundException("Ordem de serviço não encontrada!");
 
     }
+    $chefe = User::where('pescodigo', '=', $diaria->chefe_im)->first();
+    $nome_chefe = $chefe->pesncompleto;
+
+    $p_chefe = DB::table('public'. "." .'tb_posto_graduacao')
+    ->select('pgabrev')
+    ->where('pgid', '=', $chefe->pespostograd)
+    ->first();
+    $posto_chefe = $p_chefe->pgabrev;
+
     Session::flash('mensagem_print', 'Ordem de serviço enviada a impressora!');
-    return view('ficha.impressao', compact('diaria'));
+    return view('ficha.impressao', compact('diaria', 'posto_chefe', 'nome_chefe'));
+  }
 
-    //$pdf = PDF::loadView('ficha.impressao', ['diaria' => $diaria]);
-    //return $pdf->download('os.pdf');
-    //return redirect()->route('ficha.index');
+  public function print_verso($id){
 
+    if(!($diaria = Diaria::find($id))) {
+
+      throw new ModelNotFoundException("Ordem de serviço não encontrada!");
+
+    }
+    $chefe = User::where('pescodigo', '=', $diaria->chefe_im)->first();
+    $nome_chefe = $chefe->pesncompleto;
+
+    $p_chefe = DB::table('public'. "." .'tb_posto_graduacao')
+    ->select('pgabrev')
+    ->where('pgid', '=', $chefe->pespostograd)
+    ->first();
+    $posto_chefe = $p_chefe->pgabrev;
+
+    Session::flash('mensagem_print', 'Ordem de serviço enviada a impressora!');
+    return view('ficha.impressao_verso', compact('diaria', 'posto_chefe', 'nome_chefe'));
   }
 
 

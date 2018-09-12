@@ -489,7 +489,8 @@ $apresenta = $_GET['apresenta'];
     <p>Publique-se:____________________________________________________________</p>
     <br>
     @if ($tela == 'show')
-      <a href="{{ route('verTodasOs') }}" class="btn btn-primary"> Voltar</a>
+      <input type="button" value="Voltar" class="btn btn-primary" onClick="history.go(-1)">
+      <!--<a href="{{ route('verTodasOs') }}" class="btn btn-primary"> Voltar</a>-->
     @else
       {{ Form::submit('Salvar', array('class'=>'btn btn-primary')) }}
       {{ Form::reset('Limpar', array('class'=>'btn btn-danger')) }}

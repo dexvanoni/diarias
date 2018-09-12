@@ -43,7 +43,8 @@
     </div>
     <a href="{{ route('ficha.create') }}" class="btn btn-info"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Criar Nova</a>
     <a href="{{ route('tcu') }}" class="btn btn-success"> Auditoria</a>
-    <a href="{{ route('dashboard') }}" class="btn btn-primary"> Voltar</a>
+    <input type="button" value="Voltar" class="btn btn-primary" onClick="history.go(-1)">
+    <!--<a href="{{ route('dashboard') }}" class="btn btn-primary"> Voltar</a>-->
     <hr>
     @if (Session::has('mensagem_create'))
       <div class="alert alert-success">
@@ -76,6 +77,8 @@
             <th>SARAM</th>
             <th>Referente a</th>
             <th>Serviço</th>
+            <th>Aprovação</th>
+            <th>Status</th>
             <th>Ações</th>
           </tr></center>
         </thead>
@@ -83,10 +86,26 @@
           @foreach ($diaria as $diarias)
             <tr>
               <th scope="row">{{ $diarias->id }}</th>
-              <td style="width: 10%" >{{ $diarias->saram }}</td>
-              <td style="width: 20%" >{{ $diarias->pnome}}</td>
-              <td style="width: 50%">{{ $diarias->servico }}</td>
-              <td style="width: 25%" >
+              <td style="width: 5%" >{{ $diarias->saram }}</td>
+              <td style="width: 25%" >{{ $diarias->pnome}}</td>
+              <td style="width: 20%">{{ $diarias->servico }}</td>
+              <td style="width: 10%; text-align: center">
+                @if ($diarias->ok_chefe_im == 'a')
+                  <span title="Aguardando aprovação" class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                @elseif ($diarias->ok_chefe_im == 'y')
+                  <span title="OS Aprovada!" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                @elseif ($diarias->ok_chefe_im == 'n')
+                  <span title="OS Recusada!" class=" glyphicon glyphicon-remove " aria-hidden="true"></span>
+                @endif
+              </td>
+              <td style="width: 10%">
+                @if ($diarias->concluido == 'SIM')
+                  <label title="Ordem de Serviço concluída! NÃO pode ser editada ou excluída." style="color: red">Concluída</label>
+                  @else
+                    Aberta
+                @endif
+              </td>
+              <td style="width: 35%" >
                 <ul class="list-inline list-small">
                   <li title="Editar">
                     <a href="{{ route('ficha.edita', ['diarias' => $diarias->id, 'apresenta'=>'editando']) }}" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
@@ -96,6 +115,12 @@
                     <a href="{{ route('ficha.impressao', ['diarias' => $diarias->id]) }}" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-print" aria-hidden="true"></span></a>
                   </li>
                   <li>|</li>
+                  @if ($diarias->concluido == 'SIM')
+                    <li>
+                      <a title="Imprimir no verso da ficha" href="{{ route('ficha.impressao_verso', ['diarias' => $diarias->id]) }}" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-print" aria-hidden="true"></span></a>
+                    </li>
+                    <li>|</li>
+                  @endif
                   <li title="Apresentação">
                     <a href="{{ route('ficha.edita', ['diarias' => $diarias->id, 'apresenta' => 'apresenta']) }}" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span></a>
                   </li>

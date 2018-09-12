@@ -111,77 +111,101 @@
             <sup>21</sup> <strong>VALOR TOTAL: (DIÁRIA+ADC.DESL.):</strong> <br>{{ $diaria->valor_total }} - {{ $diaria->ck_valor_total }}
           </div>
         </div>
+        <div class="tabela10">
+          <div class="c23">
+            <sup>22</sup> <strong>NÚMERO DE DIÁRIAS COMPUTADAS:</strong> <br> <strong>Diárias Completas:</strong> {{ $diaria->qtn_dc }} <strong>- 1/2 Diária:</strong> {{ $diaria->qtn_md }}
+          </div>
+        </div>
         <div class="tabela9">
           <div class="c20">
-            <sup>22</sup> <strong>TIPO DE TRANSPORTE:</strong> <br> {{ $diaria->tipo_transp }}
+            <sup>23</sup> <strong>TIPO DE TRANSPORTE:</strong> <br> {{ $diaria->tipo_transp }}
           </div>
           <div class="c21">
-            <sup>23</sup> <strong>AUX. TRANSPORTE:</strong> <br>{{ $diaria->ax_t }}
+            <sup>24</sup> <strong>AUX. TRANSPORTE:</strong> <br>{{ $diaria->ax_t }}
           </div>
           <div class="c22">
-            <sup>24</sup> <strong>AUX. ALIMENTAÇÃO:</strong> <br>{{ $diaria->ax_a }}
+            <sup>25</sup> <strong>AUX. ALIMENTAÇÃO:</strong> <br>{{ $diaria->ax_a }}
           </div>
         </div>
         <div class="tabela10">
           <div class="c23">
-            <sup>25</sup> <strong>JUSTIFICATIVA DA MISSÃO EM FINAL DE SEMANA/FERIADO, DE ACORDO COM O ART. 5º, §2º DO DECRETO Nº 5.992:</strong> <br> {{ $diaria->fim_semana }}
+            <sup>26</sup> <strong>JUSTIFICATIVA DA MISSÃO EM FINAL DE SEMANA/FERIADO, DE ACORDO COM O ART. 5º, §2º DO DECRETO Nº 5.992:</strong> <br> {{ $diaria->fim_semana }}
           </div>
         </div>
         <div class="tabela11">
           <div class="c24">
-            <sup>26</sup> <strong>JUSTIFICATIVA DA CONVENIÊNCIA DO SERVIÇO: (Inciso 2.1.3, da ICA 177-42)</strong> <br> {{ $diaria->conveniencia_servico }}
+            <sup>27</sup> <strong>JUSTIFICATIVA DA CONVENIÊNCIA DO SERVIÇO: (Inciso 2.1.3, da ICA 177-42)</strong> <br> {{ $diaria->conveniencia_servico }}
           </div>
         </div>
         <div class="tabela12">
           <div class="c25">
-            <sup>27</sup> <strong>JUSTIFICATIVA: (Art 1º, da Portaria 1348/GC4/2015)</strong> <br> {{ $diaria->justificativa }}
+            <sup>28</sup> <strong>JUSTIFICATIVA: (Art 1º, da Portaria 1348/GC4/2015)</strong> <br> {{ $diaria->justificativa }}
           </div>
         </div>
 
         <!--ASSINATURAS-->
         <div class="tabela_ass">
           @if ($om == 'GAP-CG' )
-            <div class="proponho">
-              28 - PROPONHO:<br><br>
-              <center> ________________________________________</center>
-              <center>CHEFE DA DIVISÃO</center>
-            </div>
+            @if ($diaria->ok_chefe_im == 'y')
+              <div class="proponho">
+                29 - PROPONHO:<br><br>
+                <label style="margin: 0px; padding: 0">_________________________________________________</label>
+                <center><strong><label style="text-size:10px">AUTORIZADO no sistema ATRIX por:</label></strong></center>
+                <center><label style="text-size:7px">SARAM: {{ $diaria->chefe_im }} - {{ $nome_chefe }} {{ $posto_chefe }}</label></center>
+                <center>CHEFE DA DIVISÃO</center>
+              </div>
+              @else
+                <div class="proponho">
+                  29 - PROPONHO:<br><br>
+                  <center> ________________________________________</center>
+                  <center>CHEFE DA DIVISÃO</center>
+                </div>
+            @endif
             <div class="autorizo">
-              29 - AUTORIZO:<br><br>
+              30 - AUTORIZO:<br><br>
               <center>________________________________________ </center>
               <center>Valdinei Fagundes de Souza - Maj Int.</center>
               <center style="margin-left: 27em">CHEFE DO GAP-CG</center><br>
             </div>
           @elseif ($om == 'ALA 5')
-            <div class="proponho">
-              28 - PROPONHO:<br><br>
-              <center> ________________________________________</center>
-              <center>CMT EC</center>
-            </div>
+            @if ($diaria->ok_chefe_im == 'y')
+              <div class="proponho">
+                29 - PROPONHO:<br><br>
+                <center><strong><label style="text-size:10px">AUTORIZADO no sistema ATRIX por:</label></strong></center>
+                <center><label style="text-size:7px">SARAM: {{ $diaria->chefe_im }} - {{ $nome_chefe }} {{ $posto_chefe }}</label></center>
+                <center>CMT ESQUADRÃO</center>
+              </div>
+              @else
+                <div class="proponho">
+                  29 - PROPONHO:<br><br>
+                  <center> ________________________________________</center>
+                  <center>CMT ESQUADRÃO</center>
+                </div>
+            @endif
             <div class="autorizo">
-              29 - AUTORIZO:<br><br>
+              30 - AUTORIZO:<br><br>
               <center>________________________________________ </center>
               <center>Augusto Cesar Abreu dos Santos - Brig Ar.</center>
               <center style="margin-left: 27em">COMANDANTE DA ALA-5</center><br>
             </div>
           @else
             <div class="proponho">
-              28 - PROPONHO:<br><br>
+              29 - PROPONHO:<br><br>
               <center> ________________________________________</center>
-              <center>CMT EC</center>
+              <center>CMT ESQUADRÃO</center>
             </div>
             <div class="autorizo">
-              29 - AUTORIZO:<br>
+              30 - AUTORIZO:<br>
               <center>________________________________________ </center>
               <center>COMANDANTE DA ALA-5</center><br>
             </div>
           @endif
         </div>
         <!--TÉRMINO ASSINATURAS-->
-
+<br>
         <div class="1">
           <div class="row">
-            II - <sup>31</sup>FICHA DE APRESENTAÇÃO DE CONCESSÃO DE DIÁRIAS (FACD):
+            II - <sup>32</sup>FICHA DE APRESENTAÇÃO DE CONCESSÃO DE DIÁRIAS (FACD):
           </div>
         </div>
         <div class="tabela13">
@@ -345,10 +369,12 @@
   </div>
   <!--<button class="btn btn-primary" type="button" name="button" onclick="window.print();">Imprimir</button>-->
 </body>
+
 <script>
 $( document ).ready(function() {
 window.print();
 history.back();
 });
 </script>
+
 </html>

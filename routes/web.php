@@ -31,6 +31,11 @@ Route::get('/dashboard', array(
   'uses' => 'DashboardController@dash'
 ));
 
+Route::get('/aprova', array(
+  'as' => 'aprova',
+  'uses' => 'DashboardController@aprova'
+));
+
 Route::post('/outro', array(
   'as' => 'outro',
   'uses' => 'LogInController@outro'
@@ -44,6 +49,11 @@ Route::get('/tcu', array(
 Route::get('ficha/{ficha}/print', array(
   'as' => 'ficha.impressao',
   'uses' => 'DashboardController@print'
+));
+
+Route::get('ficha/{ficha}/print_verso', array(
+  'as' => 'ficha.impressao_verso',
+  'uses' => 'DashboardController@print_verso'
 ));
 
 Route::get('voltarPerfil', array(

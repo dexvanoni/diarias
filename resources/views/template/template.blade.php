@@ -72,11 +72,13 @@ $val4 = Session::get('val4');
   <div class="container">
     @if ($tela == 'show')
       <div class="pull-right">
-        <a href="{{ route('verTodasOs') }}" class="btn btn-primary"> Voltar</a>
+        <input type="button" value="Voltar" class="btn btn-primary" onClick="history.go(-1)">
+        <!--<a href="{{ route('verTodasOs') }}" class="btn btn-primary"> Voltar</a>-->
       </div>
     @else
       <div class="pull-right">
-        <a href="{{ route('ficha.index') }}" class="btn btn-primary"> Voltar</a>
+        <input type="button" value="Voltar" class="btn btn-primary" onClick="history.go(-1)">
+        <!--<a href="{{ route('ficha.index') }}" class="btn btn-primary"> Voltar</a>-->
       </div>
     @endif
 
@@ -103,6 +105,8 @@ $val4 = Session::get('val4');
   var valor_transp;
 
   $( document ).ready(function() {
+
+
 
     $('#a').val(<?php echo $val1; ?>);
     $('#b').val(<?php echo $val2; ?>);
@@ -151,6 +155,7 @@ $('#valor_restituicao').val(0.0)
     //$('.facd').hide();
     $('.homologa').show();
     $('.facd').show();
+
   }
 
 if ((a == 'edit') && (apresenta == 'apresenta')){
@@ -179,6 +184,19 @@ $("#alteracao_servico_s").click(function(){
 
 $("#alteracao_servico_n").click(function(){
   $('#camposExtras').hide();
+});
+
+if ( a == 'edit') {
+  $('#alt_chefe').hide();
+
+};
+
+$("#alt_chefe_im_s").click(function(){
+  $('#alt_chefe').show();
+});
+
+$("#alt_chefe_im_n").click(function(){
+  $('#alt_chefe').hide();
 });
 
 if ( a == 'edit') {
@@ -596,38 +614,126 @@ $('#a1').focusout(function(){
   var valor_linha_1 = $('#a').val();
   var qt_linha_1 = $('#a1').val();
   var res1 = valor_linha_1*qt_linha_1;
-  $('#resultado1').val(res1);
+  var n1 = res1.toFixed(2);
+  $('#resultado1').val(n1);
 });
 $('#b1').focusout(function(){
   var valor_linha_2 = $('#b').val();
   var qt_linha_2 = $('#b1').val();
   var res2 = valor_linha_2*qt_linha_2;
-  $('#resultado2').val(res2);
+  var n2 = res2.toFixed(2);
+  $('#resultado2').val(n2);
 });
 $('#c1').focusout(function(){
   var valor_linha_3 = $('#c').val();
   var qt_linha_3 = $('#c1').val();
   var res3 = valor_linha_3*qt_linha_3;
-  $('#resultado3').val(res3);
+  var n3 = res3.toFixed(2);
+  $('#resultado3').val(n3);
 });
 $('#d1').focusout(function(){
   var valor_linha_4 = $('#d').val();
   var qt_linha_4 = $('#d1').val();
   var res4 = valor_linha_4*qt_linha_4;
-  $('#resultado4').val(res4);
+  var n4 = res4.toFixed(2);
+  $('#resultado4').val(n4);
 });
 $('#qt_dias_a').focusout(function(){
   var valor_linha_5 = $('#desc_a').val();
   var qt_linha_5 = $('#qt_dias_a').val();
   var res5 = valor_linha_5*qt_linha_5;
-  $('#resultado_dias_a').val(res5);
+  var n5 = res5.toFixed(2);
+  $('#resultado_dias_a').val(n5);
 });
 $('#qt_dias_b').focusout(function(){
   var valor_linha_6 = $('#desc_b').val();
   var qt_linha_6 = $('#qt_dias_b').val();
   var res6 = valor_linha_6*qt_linha_6;
-  $('#resultado_dias_b').val(res6);
+  var n6 = res6.toFixed(2);
+  $('#resultado_dias_b').val(n6);
 });
+
+function calcular() {
+  //cálculo de subtotal somente das diárias
+
+  var t1 = parseFloat($('#resultado1').val());
+  var t2 = parseFloat($('#resultado2').val());
+  var t3 = parseFloat($('#resultado3').val());
+  var t4 = parseFloat($('#resultado4').val());
+
+
+  if ($('#resultado1').val() == "") {
+    t1 = 0;
+  }
+
+  if ($('#resultado2').val() == "") {
+    t2 = 0;
+  }
+
+  if ($('#resultado3').val() == "") {
+    t3 = 0;
+  }
+
+  if ($('#resultado4').val() == "") {
+    t4 = 0;
+  }
+  var sub = t1 + t2 + t3 + t4;
+  var n7 = sub.toFixed(2);
+  //document.getElementById('subtotal').value = t1 + t2 + t3 + t4;
+  $('#subtotal').val(n7);
+
+};
+
+function calcular_total() {
+  var val_ac = parseFloat($('#val_ac').val());
+  var resultado_dias_a = parseFloat($('#resultado_dias_a').val());
+  var resultado_dias_b = parseFloat($('#resultado_dias_b').val());
+  var sub_diarias = parseFloat($('#subtotal').val());
+
+
+  if ($('#val_ac').val() == "") {
+    val_ac = 0;
+  }
+  if ($('#resultado_dias_a').val() == "") {
+    resultado_dias_a = 0;
+  }
+  if ($('#resultado_dias_b').val() == "") {
+    resultado_dias_b = 0;
+  }
+  if (sub_diarias == "") {
+    sub_diarias = 0;
+  }
+
+  var tot = val_ac + resultado_dias_a + resultado_dias_b + sub_diarias;
+  var tt = tot.toLocaleString('pt-br', {minimumFractionDigits: 2});
+  $('#resultado_total').val(tt);
+  $('#valor_total').val(tt);
+}
+//zerar todos os campos de cálculos
+function limpa_diarias() {
+  $('#resultado1').val(0);
+  $('#resultado2').val(0);
+  $('#resultado3').val(0);
+  $('#resultado4').val(0);
+  $('#a1').val(0);
+  $('#b1').val(0);
+  $('#c1').val(0);
+  $('#d1').val(0);
+  $('#subtotal').val(0);
+  $('#qt_acrescimo').val(0);
+  $('#val_ac').val(0);
+  $('#a1').val(0);
+  $('#desc_a').val(0);
+  $('#desc_b').val(0);
+  $('#qt_dias_a').val(0);
+  $('#qt_dias_b').val(0);
+  $('#resultado_dias_a').val(0);
+  $('#resultado_dias_b').val(0);
+  $('#resultado_total').val(0);
+}
+
+
+
 
 </script>
 <script src="/bst/js/bootstrap.min.js"></script>

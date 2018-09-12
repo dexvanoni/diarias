@@ -42,7 +42,8 @@
       <a href="{{ route('account-sign-out') }}" class="btn btn-danger"> Logut </a>
     </div>
     <!--<a href="{{ route('ficha.create') }}" class="btn btn-info"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Criar Nova</a>-->
-    <a href="{{ route('dashboard') }}" class="btn btn-primary"> Voltar</a>
+    <input type="button" value="Voltar" class="btn btn-primary" onClick="history.go(-1)">
+    <!--<a href="{{ route('dashboard') }}" class="btn btn-primary"> Voltar</a>-->
     <hr>
     <h6 style="color: red">*Somente Ordens de Serviço concluídas!</h6>
     @if (Session::has('mensagem_create'))

@@ -22,7 +22,10 @@ $val4 = Session::get('val4');
         @php
         $don = Session::get('dono');
         @endphp
-        {!! Form::input('hidden', 'dono', $value = $don) !!}
+        @if ($tela == 'create')
+          {!! Form::input('hidden', 'dono', $value = $don) !!}
+        @endif
+
       </div>
       <div class="">
         <sup>1</sup>SC:{!! Form::text('sc', null, array('size' => '4', 'width' => '3')) !!}
@@ -245,7 +248,7 @@ $val4 = Session::get('val4');
     <div class="col-md-6">
       <div style="border: 1px solid #D3D3D3; border-radius:3px" class="input-group">
         <span style="border: 1px solid #D3D3D3; border-radius:3px; font-size: 10px" class="input-group-addon" id="basic-addon1">21 - VALOR TOTAL (Diária + Adc. Desl.)<br><br><br>Sem custo = </span>
-        {!! Form::text('valor_total', null, array('title'=>'Valor total de diárias + adicionais de deslocamento', 'class' => 'form-control input-sm a', 'placeholder'=>'R$', 'id'=>'valor_total[0]')) !!}
+        {!! Form::text('valor_total', null, array('title'=>'Valor total de diárias + adicionais de deslocamento', 'class' => 'form-control input-sm a', 'placeholder'=>'R$', 'id'=>'valor_total')) !!}
         @if ($tela=='create')
           {!! Form::input('checkbox', 'ck_valor_total', $value = "Sem Custo", $attributes = ['id'=>'zc[0]', 'class' => 'form-control input-sm a']) !!}
         @else ($tela=='editando')
@@ -266,7 +269,7 @@ $val4 = Session::get('val4');
 <div class="row">
   <div class="col-md-4">
     <div class="input-group">
-      <span title='Informe o tipo de transporte. &#013;AE = Aéreo &#013;RD = Rodoviário &#013;VO = Veículo Oficial' style="border: 1px solid #D3D3D3; border-radius:3px" class="input-group-addon" id="basic-addon1">22 - TIPO DE TRANSP.:</span>
+      <span title='Informe o tipo de transporte. &#013;AE = Aéreo &#013;RD = Rodoviário &#013;VO = Veículo Oficial' style="border: 1px solid #D3D3D3; border-radius:3px" class="input-group-addon" id="basic-addon1">23 - TIPO DE TRANSP.:</span>
         &nbsp&nbsp&nbsp{!! Form::radio('tipo_transp', 'Aéreo', null, ['id'=>'tipo_transp', 'title' => 'Aéreo']) !!}AE&nbsp&nbsp&nbsp
         {!! Form::radio('tipo_transp', 'Rodoviário', null, ['id'=>'tipo_transp', 'title' => 'Rodoviário']) !!}RD&nbsp&nbsp&nbsp
         {!! Form::radio('tipo_transp', 'Veículo Oficial', null, ['id'=>'tipo_transp', 'title' => 'Veículo Oficial']) !!}VO
@@ -274,14 +277,14 @@ $val4 = Session::get('val4');
   </div>
     <div class="col-md-4">
       <div class="input-group">
-        <span title="Informe se faz jus a auxílio transporte" style="border: 1px solid #D3D3D3; border-radius:3px" class="input-group-addon" id="basic-addon1">23 - AUXÍLIO TRANSPORTE:&nbsp</span>
+        <span title="Informe se faz jus a auxílio transporte" style="border: 1px solid #D3D3D3; border-radius:3px" class="input-group-addon" id="basic-addon1">24 - AUXÍLIO TRANSPORTE:&nbsp</span>
         &nbsp&nbsp&nbsp{!! Form::radio('ax_t', 'SIM', null, ['id'=>'ax_t']) !!}SIM&nbsp&nbsp&nbsp
         {!! Form::radio('ax_t', 'NÃO', null, ['id'=>'ax_t']) !!}NÃO
       </div>
     </div>
     <div class="col-md-4">
       <div class="input-group">
-        <span title="Informe se faz jus a auxílio alimentação" style="border: 1px solid #D3D3D3; border-radius:3px" class="input-group-addon" id="basic-addon1">24 - AUXÍLIO ALIMENTAÇÃO:</span>
+        <span title="Informe se faz jus a auxílio alimentação" style="border: 1px solid #D3D3D3; border-radius:3px" class="input-group-addon" id="basic-addon1">25 - AUXÍLIO ALIMENTAÇÃO:</span>
           &nbsp&nbsp&nbsp{!! Form::radio('ax_a', 'SIM', null, ['id'=>'ax_a']) !!}SIM&nbsp&nbsp&nbsp
           {!! Form::radio('ax_a', 'NÃO', null, ['id'=>'ax_a']) !!}NÃO
       </div>
@@ -293,7 +296,7 @@ $val4 = Session::get('val4');
 <div class="row">
   <div title="JUSTIFICATIVA DA MISSÃO EM FINAL DE SEMANA / FERIADO: (§ 2º, Art. 5º, do Dec. 5.992/2006)" class="col-md-12">
     <div class="input-group">
-      <span class="input-group-addon" id="basic-addon1">25</span>
+      <span class="input-group-addon" id="basic-addon1">26</span>
       {!! Form::textarea('fim_semana', null, array('maxlength'=>'100','rows'=>'3', 'class' => 'form-control', 'placeholder'=>'JUSTIFICATIVA DA MISSÃO EM FINAL DE SEMANA / FERIADO: (§ 2º, Art. 5º, do Dec. 5.992/2006)')) !!}
     </div>
   </div>
@@ -303,7 +306,7 @@ $val4 = Session::get('val4');
 <div class="row">
   <div title="JUSTIFICATIVA DA CONVENIÊNCIA DO SERVIÇO: (Inciso 2.1.3, da ICA 177-42)" class="col-md-12">
     <div class="input-group">
-      <span class="input-group-addon" id="basic-addon1">26</span>
+      <span class="input-group-addon" id="basic-addon1">27</span>
       {!! Form::textarea('conveniencia_servico', null, array('maxlength'=>'100', 'rows'=>'3', 'class' => 'form-control', 'placeholder'=>'JUSTIFICATIVA DA CONVENIÊNCIA DO SERVIÇO: (Inciso 2.1.3, da ICA 177-42) - 100 caracteres')) !!}
     </div>
   </div>
@@ -313,12 +316,57 @@ $val4 = Session::get('val4');
 <div class="row">
   <div title="JUSTIFICATIVA: (Art 1º, da Portaria 1348/GC4/2015)" class="col-md-12">
     <div class="input-group">
-      <span class="input-group-addon" id="basic-addon1">27</span>
+      <span class="input-group-addon" id="basic-addon1">28</span>
       {!! Form::textarea('justificativa', null, array('maxlength'=>'100', 'rows'=>'3', 'class' => 'form-control', 'placeholder'=>'JUSTIFICATIVA: (Art 1º, da Portaria 1348/GC4/2015)')) !!}
     </div>
   </div>
 </div>
 <p></p>
+
+<div class="row">
+  <div title="Informe o nome do Chefe Imediato para autorização" class="col-md-12">
+    <div class="input-group">
+      @if ($tela=='create')
+        {!! Form::open(['method'=> 'GET',
+           'action'=>'DashboardController@create']) !!}
+        {!! Form::label('chefe_im', 'Selecione o seu chefe imediato para autorização:') !!}
+        {!! Form::select('chefe_im', $select, null, ['class'=>'form-control']) !!}
+        <label style="color: red">*Lista de oficiais cadastrados no SIMS</label>
+      @elseif ($tela == 'edit')
+        <strong>Chefe imediato para aprovação: <br>
+          SARAM</strong> {{ $diaria->chefe_im }} <br>
+          <strong>Nome: </strong>{{ $posto_chefe }} {{ $nome_chefe }} <br>
+
+          @if ($diaria->ok_chefe_im == 'a')
+            <h5 style="color: red"><strong>AGUARDANDO AUTORIZAÇÃO DO CHEFE IMEDIATO!</strong></h5>
+            <strong>Alterar Chefe imediato?</strong>
+            {!! Form::radio('alt_chefe_im', 'SIM', null, ['id'=>'alt_chefe_im_s']) !!}SIM&nbsp&nbsp&nbsp
+            {!! Form::radio('alt_chefe_im', 'NÃO', null, ['id'=>'alt_chefe_im_n', 'checked'=>'checked']) !!}NÃO
+<br>
+            <div class="col-md-12" id="alt_chefe">
+              {!! Form::open(['method'=> 'GET',
+                'action'=>'DashboardController@create']) !!}
+                {!! Form::label('chefe_im', 'Selecione o seu chefe imediato para autorização:') !!}
+                {!! Form::select('chefe_im', $select, null, ['class'=>'form-control']) !!}
+
+                <label style="color: red">*Lista de oficiais cadastrados no SIMS</label>
+              </div>
+            @elseif ($diaria->ok_chefe_im == 'n')
+              <h5 style="color: red"><strong>NÃO AUTORIZADO PELO CHEFE IMEDIATO!</strong></h5>
+            @elseif ($diaria->ok_chefe_im == 'y')
+              <h5 style="color: red"><strong>VERIFICADO E APROVADO PELO CHEFE IMEDIATO!</strong></h5>
+            @endif
+            @if ($diaria->chefe_im == $don)
+              <strong>AUTORIZAÇÃO</strong>
+              {!! Form::radio('ok_chefe_im', 'y', null, ['id'=>'ok_chefe_im_s']) !!}SIM&nbsp&nbsp&nbsp
+              {!! Form::radio('ok_chefe_im', 'n', null, ['id'=>'ok_chefe_im_n']) !!}NÃO
+            @endif
+          @endif
+
+    </div>
+  </div>
+</div>
+<hr>
 
 <!-- ##########################  SEGUNDA SEÇÃO DA FICHA #############################################-->
 <!-- na tela de criação não aparece a FACD e nem HOMOLOGAÇÃO e na tela de edição não aparece a HOMOLOGAÇÃO. A HOMOLOGAÇÃO só aparece para o administrador -->
@@ -326,7 +374,7 @@ $val4 = Session::get('val4');
 
   <div class="facd">
     <div class="row">
-      <h5><b>II - <sup>30</sup>FICHA DE APRESENTAÇÃO DE CONCESSÃO DE DIÁRIAS (FACD):</b></h5>
+      <h5><b>II - <sup>31</sup>FICHA DE APRESENTAÇÃO DE CONCESSÃO DE DIÁRIAS (FACD):</b></h5>
     </div>
     <p></p>
     <div class="row">
@@ -378,10 +426,10 @@ $val4 = Session::get('val4');
         <center><h6>Brasília, Manaus, Rio de Janeiro</h6></center>
       </div>
       <div class="col-md-2">
-        <center>{!! Form::text('qt_br_am_rj', null, array('size'=>'6', 'id'=>'a1')) !!} </center>
+        <center>{!! Form::text('qt_br_am_rj', null, array('size'=>'6', 'id'=>'a1', 'onblur'=>'calcular_total()')) !!} </center>
       </div>
       <div class="col-md-2">
-        <center>{!! Form::text('resultado1', null, array('size'=>'6', 'id'=>'resultado1')) !!}</center>
+        <center>{!! Form::text('resultado1', null, array('size'=>'6', 'id'=>'resultado1', 'onblur'=>'calcular()')) !!}</center>
       </div>
     </div>
     <!-- SEGUNDA LINHA DA TABELA-->
@@ -393,10 +441,10 @@ $val4 = Session::get('val4');
         <center><h6>Belo Horizonte, Fortaleza, Porto Alegre, Recife, Salvador e São Paulo</h6></center>
       </div>
       <div class="col-md-2">
-        <center>{!! Form::text('qt_bh_fl_pa_rc_sl_sp', null, array('size'=>'6', 'id'=>'b1')) !!}</center>
+        <center>{!! Form::text('qt_bh_fl_pa_rc_sl_sp', null, array('size'=>'6', 'id'=>'b1', 'onblur'=>'calcular_total()')) !!}</center>
       </div>
       <div class="col-md-2">
-        <center>{!! Form::text('resultado2', null, array('size'=>'6', 'id'=>'resultado2')) !!}</center>
+        <center>{!! Form::text('resultado2', null, array('size'=>'6', 'id'=>'resultado2', 'onblur'=>'calcular()')) !!}</center>
       </div>
     </div>
     <!-- TERCEIRA LINHA DA TABELA-->
@@ -408,10 +456,10 @@ $val4 = Session::get('val4');
         <center><h6>Demais capitais de Estado</h6></center>
       </div>
       <div class="col-md-2">
-        <center>{!! Form::text('qt_capitais', null, array('size'=>'6', 'id'=>'c1')) !!}</center>
+        <center>{!! Form::text('qt_capitais', null, array('size'=>'6', 'id'=>'c1', 'onblur'=>'calcular_total()')) !!}</center>
       </div>
       <div class="col-md-2">
-        <center>{!! Form::text('resultado3', null, array('size'=>'6', 'id'=>'resultado3')) !!}</center>
+        <center>{!! Form::text('resultado3', null, array('size'=>'6', 'id'=>'resultado3', 'onblur'=>'calcular()')) !!}</center>
       </div>
     </div>
     <!-- QUARTA LINHA DA TABELA-->
@@ -423,10 +471,15 @@ $val4 = Session::get('val4');
         <center><h6>Demais Cidades</h6></center>
       </div>
       <div class="col-md-2">
-        <center>{!! Form::text('qt_cidades', null, array('size'=>'6', 'id'=>'d1')) !!}</center>
+        <center>{!! Form::text('qt_cidades', null, array('size'=>'6', 'id'=>'d1', 'onblur'=>'calcular_total()')) !!}</center>
       </div>
       <div class="col-md-2">
-        <center>{!! Form::text('resultado4', null, array('size'=>'6', 'id'=>'resultado4')) !!}</center>
+        <center>{!! Form::text('resultado4', null, array('size'=>'6', 'id'=>'resultado4', 'onblur'=>'calcular()')) !!}</center>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 col-md-offset-10">
+        <center>Total: {!! Form::text('subtotal', null, array('size'=>'6', 'id'=>'subtotal' )) !!}</center>
       </div>
     </div>
     <!-- LINHA DE ACRÉSCIMOS-->
@@ -439,7 +492,7 @@ $val4 = Session::get('val4');
         <center>{!! Form::input('text', 'qt_acrescimo', null, $attributes = ['id'=>'qt_acrescimo', 'size'=>'6']) !!} </center>
       </div>
       <div class="col-md-2">
-        <center>{!! Form::input('text', 'val_ac', null, $attributes = ['id'=>'val_ac','size'=>'6']) !!}</center>
+        <center>{!! Form::input('text', 'val_ac', null, $attributes = ['id'=>'val_ac','size'=>'6', 'onblur'=>'calcular_total()']) !!}</center>
       </div>
     </div>
     <!-- LINHA DE DESCONTOS-->
@@ -470,7 +523,7 @@ $val4 = Session::get('val4');
         <center>{!! Form::text('qt_dias_a', null, array('size'=>'6', 'id'=>'qt_dias_a')) !!}</center>
       </div>
       <div class="col-md-2">
-        <center>{!! Form::text('resultado_dias_a', null, array('size'=>'6', 'id'=>'resultado_dias_a')) !!}</center>
+        <center>{!! Form::text('resultado_dias_a', null, array('size'=>'6', 'id'=>'resultado_dias_a', 'onblur'=>'calcular_total()')) !!}</center>
       </div>
     </div>
     <!-- SEGUNDA LINHA DESCONTO-->
@@ -485,12 +538,17 @@ $val4 = Session::get('val4');
         <center>{!! Form::text('qt_dias_b', null, array('size'=>'6', 'id'=>'qt_dias_b')) !!}</center>
       </div>
       <div class="col-md-2">
-        <center>{!! Form::text('resultado_dias_b', null, array('size'=>'6', 'id'=>'resultado_dias_b')) !!}</center>
+        <center>{!! Form::text('resultado_dias_b', null, array('size'=>'6', 'id'=>'resultado_dias_b', 'onblur'=>'calcular_total()')) !!}</center>
       </div>
     </div>
     <hr>
     <h4>Número de diárias completas computadas: {!! Form::text('qtn_dc', null, array('size'=>'6', 'id'=>'qtn_dc')) !!}</h4>
     <h4>Número de 1/2 diárias computadas: {!! Form::text('qtn_md', null, array('size'=>'6', 'id'=>'qtn_md')) !!}</h4>
+    <div class="row">
+      <div class="col-md-2 col-md-offset-10">
+        <button type="button" name="limpar_diarias" onclick="limpa_diarias()">Limpar</button>
+      </div>
+    </div>
     <hr>
     <div class="row">
       <div class="col-md-4">
@@ -516,7 +574,7 @@ $val4 = Session::get('val4');
   <div class="homologa">
     <div class="col-md-12">
       <div class="row">
-        <h5><b>III - <sup>31</sup>HOMOLOGAÇÃO:</b></h5>
+        <h5><b>III - <sup>32</sup>HOMOLOGAÇÃO:</b></h5>
       </div>
     </div>
     <br>
@@ -526,10 +584,10 @@ $val4 = Session::get('val4');
         <p>a) Homologo a concessão de diárias</p>
       </div>
       <div class="row">
-        <p>b) 1. {!! Form::checkbox('conforme_previsto', null, array('class' => 'form-control input-sm', 'value'=>'Conforme previsto na presente Ordem de Serviço')) !!} Conforme previsto na presente Ordem de Serviço</p>
+        <p>b) 1. {!! Form::checkbox('conforme_previsto', 'Conforme previsto na presente Ordem de Serviço', false) !!} Conforme previsto na presente Ordem de Serviço</p>
       </div>
       <div class="row">
-        <p>2. {!! Form::checkbox('conforme_forca_maior', null, array('class' => 'form-control input-sm', 'value'=>'Conforme a seguir, por motivo de força maior')) !!} Conforme a seguir, por motivo de força maior.</p>
+        <p>2. {!! Form::checkbox('conforme_forca_maior', 'Conforme a seguir, por motivo de força maior',  false) !!} Conforme a seguir, por motivo de força maior.</p>
       </div>
       <div class="row">
         <p>1/2 diária - Qtd: {!! Form::text('qt_meia_diaria', null, array('size'=>'3', 'id'=>'qt_meia_diaria')) !!} referente a localidade de {!! Form::text('localidade_meia_diaria', null, array('size'=>'25')) !!}</p>
@@ -571,15 +629,15 @@ $val4 = Session::get('val4');
     @endif
 
   </div>
-
 <br>
 @if ($tela == 'edit' and $apresenta == 'apresenta')
   <h6 style="color: red"><strong>Obs.: Ordem de serviço já concluída! Somente leitura, qualquer alteração realizada neste formulário NÃO será efetivada na ordem de serviço em tela.</strong></h6>
 @else
   @if ($tela == 'create')
     <input type="hidden" name="concluido" value="NÃO">
+    <input type="hidden" name="ok_chefe_im" value="a">
+
   @endif
   <input type="submit" name="envia" id="sub" value="Salvar" class="btn btn-primary">
   {{ Form::reset('Limpar', array('class'=>'btn btn-danger')) }}
 @endif
-<script src="/ficha/formulario/computos.js"></script>

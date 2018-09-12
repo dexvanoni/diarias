@@ -32,11 +32,26 @@
 <div class="container">
   <div class="row">
     <div class="col-md-4 col-xs-offset-1">
-      <a href="{{ route('ficha.index') }}" class="btn btn-info"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Minhas OS</a>
-      @if ($administrador)
-        <a href="{{ route('verTodasOs') }}"class="btn btn-success"><span class="glyphicon glyphicon-king" aria-hidden="true"></span> Administração</a>
-      @endif
-      <a href="{{ route('account-sign-out') }}" class="btn btn-danger"> Logut </a>
+      <div class="dropdown">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          MENU
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
+          <li><a href="{{ route('ficha.index') }}">Minhas OS</a></li>
+          @if ($administrador)
+            <li><a href="{{ route('verTodasOs') }}">Administração</a></li>
+          @endif
+          @php
+          $ofs = array("15", "9", "10", "11", "4", "5", "8", "24", "27", "1", "3", "7", "2", "6");
+          @endphp
+          @if (in_array($usuario->pespostograd, $ofs))
+            <li><a href="{{ route('aprova') }}">Aprovação</a></li>
+          @endif
+          <li role="separator" class="divider"></li>
+          <li><a href="{{ route('account-sign-out') }}"> Logut </a></li>
+        </ul>
+      </div>
     </div>
     <div  style="margin-top: -20px" class="col-md-3 col-xs-offset-3">
       <label for="outro">Ordens de Serviço para outro militar</label>
@@ -57,7 +72,7 @@
   @endif
   <div class="container">
     <center><img src="/bst/brasao.png" class="img-responsive" alt="" height="150em" width="150em" /></center>
-    <center><h2>STIC | 2018</h2></center>
+    <center><h2>SDTIC | 2018</h2></center>
   </div>
   <h6 style="margin-left: 30px">Desenvolvido por 3S SIN Vanoni</h6>
   <script src="/bst/js/bootstrap.min.js"></script>

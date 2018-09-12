@@ -11,8 +11,8 @@
 </head>
 <body>
   @php
-  $d1 = Session::get('pescodigo');
-  $dono = Session::get('dono');
+    $d1 = Session::get('pescodigo');
+    $dono = Session::get('dono');
   @endphp
   <nav class="navbar navbar-default">
     <div class="container-fluid">
@@ -24,7 +24,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <i class="navbar-brand">Relação de Ordens de Serviço </i>
+        <i class="navbar-brand">Relação de Ordens de Serviço - Aprovação </i>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
@@ -41,11 +41,11 @@
     <div class="pull-right">
       <a href="{{ route('account-sign-out') }}" class="btn btn-danger"> Logut </a>
     </div>
-    <a href="{{ route('ficha.create') }}" class="btn btn-info"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Criar Nova</a>
+    <!--<a href="{{ route('ficha.create') }}" class="btn btn-info"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Criar Nova</a>-->
     <input type="button" value="Voltar" class="btn btn-primary" onClick="history.go(-1)">
     <!--<a href="{{ route('dashboard') }}" class="btn btn-primary"> Voltar</a>-->
-
     <hr>
+    <h6 style="color: red">*Somente Ordens de Serviço concluídas!</h6>
     @if (Session::has('mensagem_create'))
       <div class="alert alert-success">
         {{ Session::get('mensagem_create') }}
@@ -73,22 +73,19 @@
       <table class="table table-hover" id="pesquisa">
         <thead>
           <center><tr>
-            <th>OS</th>
-            <th>SARAM</th>
-            <th>Referente a</th>
-            <th>Serviço</th>
-            <th>Aprovação</th>
-            <th>Status</th>
-            <th>Ações</th>
+            <th style="text-align: center">OS</th>
+            <th style="text-align: center">Requerente</th>
+            <th style="text-align: center">Dt. Abertura OS</th>
+            <th style="text-align: center">Aprovação</th>
+            <th style="text-align: center">Ações</th>
           </tr></center>
         </thead>
         <tbody>
           @foreach ($diaria as $diarias)
             <tr>
-              <th style="width: 10%" scope="row">{{ $diarias->id }}</th>
-              <td style="width: 10%" >{{ $diarias->saram }}</td>
-              <td style="width: 20%" >{{ $diarias->pnome}}</td>
-              <td style="width: 20%">{{ $diarias->servico }}</td>
+              <th style="width: 8%; text-align: center" scope="row">{{ $diarias->id }}</th>
+              <td style="width: 20%; text-align: center" >{{ $diarias->pnome }}</td>
+              <td style="width: 15%; text-align: center" >{{ date('d/m/Y H:s', strtotime($diarias->created_at)) }}</td>
               <td style="width: 10%; text-align: center">
                 @if ($diarias->ok_chefe_im == 'a')
                   <span title="Aguardando aprovação" class="glyphicon glyphicon-time" aria-hidden="true"></span>
@@ -98,44 +95,14 @@
                   <span title="OS Recusada!" class=" glyphicon glyphicon-remove " aria-hidden="true"></span>
                 @endif
               </td>
-              <td style="width: 10%">
-                @if ($diarias->concluido == 'SIM')
-                  <label title="Ordem de Serviço concluída! NÃO pode ser editada ou excluída." style="color: red">Concluída</label>
-                @else
-                  Em andamento
-                @endif
-              </td>
-              <td style="width: 20%" >
+              <td style="width: 20%; text-align: center" >
                 <ul class="list-inline list-small">
-                  @if ($diarias->concluido == 'NÃO')
-                    <li title="Editar">
-                      <a href="{{ route('ficha.edita', ['diarias' => $diarias->id, 'apresenta'=>'editando']) }}" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
-                    </li>
-                    <li>|</li>
                     <li title="Imprimir">
                       <a href="{{ route('ficha.impressao', ['diarias' => $diarias->id]) }}" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-print" aria-hidden="true"></span></a>
                     </li>
-                    <li>|</li>
-                    <li title="Excluir">
-                      <form action="{{ route('ficha.destroy', ['diarias' => $diarias->id]) }}" onsubmit="return confirm('\nTem certeza que deseja excluir esta OS?'); return false;" method="post">
-                        {{ csrf_field() }}
-                        {{ method_field('DELETE') }}
-                        <button type="submit" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-                      </form>
+                    <li title="Aprovação">
+                      <a href="{{ route('ficha.edita', ['diarias' => $diarias->id, 'apresenta'=>'editando']) }}" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
                     </li>
-                  @else
-                    <li title="Ver">
-                      <a href="{{ route('ficha.edita', ['diarias' => $diarias->id, 'apresenta'=>'apresenta']) }}" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-open-file" aria-hidden="true"></span></a>
-                    </li>
-                    <li>|</li>
-                    <li title="Imprimir">
-                      <a href="{{ route('ficha.impressao', ['diarias' => $diarias->id]) }}" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-print" aria-hidden="true"></span></a>
-                    </li>
-                    <li>|</li>
-                    <li>
-                      <a title="Imprimir no verso da ficha" href="{{ route('ficha.impressao_verso', ['diarias' => $diarias->id]) }}" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-print" aria-hidden="true"></span></a>
-                    </li>
-                  @endif
                 </ul>
               </td>
             </tr>
@@ -150,17 +117,36 @@
   </div>
   <script src="/bst/js/bootstrap.min.js"></script>
   <script src="/bst/js/jquery.dataTables.min.js"></script>
+
+  <script src="/js/app.js"></script>
+  <script src="/js/jquery-1.12.4.js"></script>
+  <script src="/js/jquery.cycle.all.js"></script>
+  <script src="/DataTables/DataTables-1.10.16/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.flash.min.js"></script>
+  <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+  <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+  <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
   <script>
   $(document).ready(function(){
     $('#pesquisa').DataTable( {
+      "order": [[ 0, "desc" ]],
+      dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ],
       "scrollY":        "300px",
-      "scrollCollapse": true,
-      "language": {
-        "url": "/js/Portuguese-Brasil.json"
-      }
+        "scrollCollapse": true,
+        "language": {
+          "url": "/js/Portuguese-Brasil.json"
+        }
 
     } );
-  });
+});
   </script>
 
 </body>

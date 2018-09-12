@@ -6,10 +6,15 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AddChefeImTableDiarias' => $baseDir . '/database/migrations/2018_09_03_142753_add_chefe_im_table_diarias.php',
     'AlterResultadoTotal' => $baseDir . '/database/migrations/2018_08_28_123120_alter_resultado_total.php',
+    'AlterTableDiarias' => $baseDir . '/database/migrations/2018_09_03_183427_alter_table_diarias.php',
+    'AlterTableDiarias2' => $baseDir . '/database/migrations/2018_09_11_151548_alter_table_diarias2.php',
+    'AlterTableDiariasNmChefe' => $baseDir . '/database/migrations/2018_09_03_185109_alter_table_diarias_nm_chefe.php',
     'AlterValorRestituicao' => $baseDir . '/database/migrations/2018_08_28_123948_alter_valor_restituicao.php',
     'Cpdf' => $vendorDir . '/dompdf/dompdf/lib/Cpdf.php',
     'CreateDiariasTable' => $baseDir . '/database/migrations/2017_06_28_190336_create_diarias_table.php',
+    'CreateOficiaisTable' => $baseDir . '/database/migrations/2018_09_03_124753_create_oficiais_table.php',
     'CreateTbAdmDiariasTable' => $baseDir . '/database/migrations/2017_06_20_234543_create_tb_adm_diarias_table.php',
     'CreateTbValoresDiariasTable' => $baseDir . '/database/migrations/2017_06_21_072020_create_tb_valores_diarias_table.php',
     'CreateTrechosTable' => $baseDir . '/database/migrations/2017_06_28_203108_create_trechos_table.php',
