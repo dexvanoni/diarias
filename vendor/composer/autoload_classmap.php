@@ -13,6 +13,7 @@ return array(
     'AlterTableDiariasNmChefe' => $baseDir . '/database/migrations/2018_09_03_185109_alter_table_diarias_nm_chefe.php',
     'AlterValorRestituicao' => $baseDir . '/database/migrations/2018_08_28_123948_alter_valor_restituicao.php',
     'Cpdf' => $vendorDir . '/dompdf/dompdf/lib/Cpdf.php',
+    'CreateChefesTable' => $baseDir . '/database/migrations/2018_09_12_175628_create_chefes_table.php',
     'CreateDiariasTable' => $baseDir . '/database/migrations/2017_06_28_190336_create_diarias_table.php',
     'CreateOficiaisTable' => $baseDir . '/database/migrations/2018_09_03_124753_create_oficiais_table.php',
     'CreateTbAdmDiariasTable' => $baseDir . '/database/migrations/2017_06_20_234543_create_tb_adm_diarias_table.php',

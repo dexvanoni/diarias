@@ -109,7 +109,7 @@
           <div class="c27">
             <br>
             &nbsp________________________________________
-            <center>Valdinei Fagundes de Souza - Maj Int.</center>
+            <center>{{ $ordenador->nome_completo }} - {{ $ordenador->posto_grad }}</center>
             <center>ORDENADOR DE DESPESAS</center>
           </div>
           <div class="c28">
@@ -176,7 +176,7 @@
 
             <div class="ordenador">
               <center>_________________________________________<br></center>
-              <center>Valdinei Fagundes de Souza - Maj Int. <br></center>
+              <center>{{ $ordenador->nome_completo }} - {{ $ordenador->posto_grad }} <br></center>
               <center><sup>33</sup> ORDENADOR DE DESPESAS DO GAP-CG<br></center>
             </div>
 

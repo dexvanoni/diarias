@@ -26,6 +26,8 @@ Route::get('/account/sign-out', array(
 
 Route::resource('ficha', 'DashboardController');
 
+Route::resource('chefe', 'ChefeController');
+
 Route::get('/dashboard', array(
   'as' => 'dashboard',
   'uses' => 'DashboardController@dash'

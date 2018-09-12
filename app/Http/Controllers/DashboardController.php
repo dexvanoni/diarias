@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Diaria;
 use App\User;
+use App\Chefe;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
@@ -25,11 +26,12 @@ class DashboardController extends Controller
   private $diaria;
   private $pessoa;
 
-  public function __construct(Diaria $diaria, Pessoa $pessoa, Valor $valor)
+  public function __construct(Diaria $diaria, Pessoa $pessoa, Valor $valor, Chefe $chefe)
   {
     $this->diaria = $diaria;
     $this->pessoa = $pessoa;
     $this->valor = $valor;
+    $this->chefe = $chefe;
   }
   public function dash(){
     $sar = Session::get('dono');
@@ -218,8 +220,12 @@ class DashboardController extends Controller
     ->first();
     $posto_chefe = $p_chefe->pgabrev;
 
+    $cmt_ala =  Chefe::where('cargo', '=', 'COMANDANTE DA ALA-5')->first();
+    $ch_gap =  Chefe::where('cargo', '=', 'CHEFE DO GAP-CG')->first();
+    $ordenador =  Chefe::where('cargo', '=', 'ORDENADOR DE DESPESAS')->first();
+
     Session::flash('mensagem_print', 'Ordem de serviço enviada a impressora!');
-    return view('ficha.impressao', compact('diaria', 'posto_chefe', 'nome_chefe'));
+    return view('ficha.impressao', compact('diaria', 'posto_chefe', 'nome_chefe', 'cmt_ala', 'ch_gap', 'ordenador'));
   }
 
   public function print_verso($id){

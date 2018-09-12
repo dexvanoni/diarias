@@ -74,56 +74,26 @@
       <table class="table table-hover" id="pesquisa">
         <thead>
           <center><tr>
-            <th>OS</th>
-            <th>SARAM</th>
-            <th>Referente a</th>
-            <th>Serviço</th>
-            <th>Aprovação</th>
-            <th>Status</th>
-            <th>Ações</th>
+            <th>#</th>
+            <th>Posto/Grad.</th>
+            <th>Nome Completo</th>
+            <th>Nome de Guerra</th>
+            <th>Cargo/Função</th>
+            <th>Ação</th>
           </tr></center>
         </thead>
         <tbody>
-          @foreach ($diaria as $diarias)
+          @foreach ($chefe as $chefes)
             <tr>
-              <th scope="row">{{ $diarias->id }}</th>
-              <td style="width: 5%" >{{ $diarias->saram }}</td>
-              <td style="width: 25%" >{{ $diarias->pnome}}</td>
-              <td style="width: 20%">{{ $diarias->servico }}</td>
-              <td style="width: 10%; text-align: center">
-                @if ($diarias->ok_chefe_im == 'a')
-                  <span title="Aguardando aprovação" class="glyphicon glyphicon-time" aria-hidden="true"></span>
-                @elseif ($diarias->ok_chefe_im == 'y')
-                  <span title="OS Aprovada!" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                @elseif ($diarias->ok_chefe_im == 'n')
-                  <span title="OS Recusada!" class=" glyphicon glyphicon-remove " aria-hidden="true"></span>
-                @endif
-              </td>
-              <td style="width: 10%">
-                @if ($diarias->concluido == 'SIM')
-                  <label title="Ordem de Serviço concluída! NÃO pode ser editada ou excluída." style="color: red">Concluída</label>
-                  @else
-                    Aberta
-                @endif
-              </td>
-              <td style="width: 35%" >
+              <th scope="row">{{ $chefes->id }}</th>
+              <td style="width: 5%" >{{ $chefes->posto_grad }}</td>
+              <td style="width: 40%" >{{ $chefes->nome_completo}}</td>
+              <td style="width: 20%">{{ $chefes->nome_guerra }}</td>
+              <td style="width: 20%">{{ $chefes->cargo }}</td>
+              <td style="width: 10%" >
                 <ul class="list-inline list-small">
                   <li title="Editar">
-                    <a href="{{ route('ficha.edita', ['diarias' => $diarias->id, 'apresenta'=>'editando']) }}" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
-                  </li>
-                  <li>|</li>
-                  <li title="Imprimir">
-                    <a href="{{ route('ficha.impressao', ['diarias' => $diarias->id]) }}" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-print" aria-hidden="true"></span></a>
-                  </li>
-                  <li>|</li>
-                  @if ($diarias->concluido == 'SIM')
-                    <li>
-                      <a title="Imprimir no verso da ficha" href="{{ route('ficha.impressao_verso', ['diarias' => $diarias->id]) }}" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-print" aria-hidden="true"></span></a>
-                    </li>
-                    <li>|</li>
-                  @endif
-                  <li title="Apresentação">
-                    <a href="{{ route('ficha.edita', ['diarias' => $diarias->id, 'apresenta' => 'apresenta']) }}" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span></a>
+                    <a href="{{ route('chefe.edit', ['chefes' => $chefes->id]) }}" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
                   </li>
                 </ul>
               </td>
@@ -135,7 +105,7 @@
         <h5 style="color: red">Você pode criar uma nova OS para o {{ Session::get('grad') }} {{ Session::get('pesnguerra') }} ou <a href="{{ route('voltarPerfil') }}">voltar para seu perfil</a> </h5>
       @endif
     </div>
-    <center>{{ $diaria->links() }}</center>
+  <center><h5 style="color: red">ALTERAR O MILITAR PARA CADA CARGO/FUNÇÃO</h5></center>
   </div>
   <script src="/bst/js/bootstrap.min.js"></script>
   <script src="/bst/js/jquery.dataTables.min.js"></script>

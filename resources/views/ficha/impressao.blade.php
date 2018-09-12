@@ -164,7 +164,7 @@
             <div class="autorizo">
               30 - AUTORIZO:<br><br>
               <center>________________________________________ </center>
-              <center>Valdinei Fagundes de Souza - Maj Int.</center>
+              <center>{{ $ch_gap->nome_completo }} - {{ $ch_gap->posto_grad }}</center>
               <center style="margin-left: 27em">CHEFE DO GAP-CG</center><br>
             </div>
           @elseif ($om == 'ALA 5')
@@ -185,7 +185,7 @@
             <div class="autorizo">
               30 - AUTORIZO:<br><br>
               <center>________________________________________ </center>
-              <center>Augusto Cesar Abreu dos Santos - Brig Ar.</center>
+              <center>{{ $cmt_ala->nome_completo }} - {{ $cmt_ala->posto_grad }}</center>
               <center style="margin-left: 27em">COMANDANTE DA ALA-5</center><br>
             </div>
           @else
@@ -290,7 +290,7 @@
           <div class="c27">
             <br>
             &nbsp________________________________________
-            <center>Valdinei Fagundes de Souza - Maj Int.</center>
+            <center>{{ $ordenador->nome_completo }} - {{ $ordenador->posto_grad }}</center>
             <center>ORDENADOR DE DESPESAS</center>
           </div>
           <div class="c28">
@@ -357,7 +357,7 @@
 
             <div class="ordenador">
               <center>_________________________________________<br></center>
-              <center>Valdinei Fagundes de Souza - Maj Int. <br></center>
+              <center>{{ $ordenador->nome_completo }} - {{ $ordenador->posto_grad }} <br></center>
               <center><sup>33</sup> ORDENADOR DE DESPESAS DO GAP-CG<br></center>
             </div>
 
@@ -369,12 +369,12 @@
   </div>
   <!--<button class="btn btn-primary" type="button" name="button" onclick="window.print();">Imprimir</button>-->
 </body>
-
+<!--
 <script>
 $( document ).ready(function() {
 window.print();
 history.back();
 });
 </script>
-
+-->
 </html>
