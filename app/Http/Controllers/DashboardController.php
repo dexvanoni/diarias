@@ -120,7 +120,7 @@ class DashboardController extends Controller
     $administrador = Session::get('administrador');
 
     $posto = DB::table('public'. "." .'tb_pessoas')
-    ->whereIn('pespostograd', [15, 9, 10, 11, 4, 5, 8, 24, 27, 1, 3, 7, 2, 6])
+    ->whereIn('pespostograd', [9, 10, 11, 4, 5, 8, 24, 27, 1, 3, 7, 2, 6])
     ->orderBy('pesnguerra', 'asc')
     ->get();
 
@@ -167,7 +167,7 @@ class DashboardController extends Controller
     $apresenta = $request->apresenta;
 
     $posto = DB::table('public'. "." .'tb_pessoas')
-    ->whereIn('pespostograd', [15, 9, 10, 11, 4, 5, 8, 24, 27, 1, 3, 7, 2, 6])
+    ->whereIn('pespostograd', [9, 10, 11, 4, 5, 8, 24, 27, 1, 3, 7, 2, 6])
     ->orderBy('pesnguerra', 'asc')
     ->get();
 

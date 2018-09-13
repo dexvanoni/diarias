@@ -96,9 +96,9 @@
           <div class="c17">
             <sup>17</sup> <strong>MISSÃO EM PROVEITO:</strong> <br> {{ $diaria->em_proveito }}
           </div>
-        </div>
-        <div class="tabela6">
-          <sup>18</sup> <strong>CUSTEIO:</strong> <br> {{ $diaria->custeio }}
+          <div class="c17b">
+            <sup>18</sup> <strong>CUSTEIO:</strong> <br> {{ $diaria->custeio }}
+          </div>
         </div>
         <div class="tabela7">
           <sup>19</sup> <strong>LOCAL DE REALIZAÇÃO DO SERVIÇO:</strong> <br> {{ $diaria->trechos }}

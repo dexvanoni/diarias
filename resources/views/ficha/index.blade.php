@@ -109,14 +109,14 @@
               <td style="width: 20%" >
                 <ul class="list-inline list-small">
                   @if ($diarias->concluido == 'NÃO')
-                    <li title="Editar">
-                      <a href="{{ route('ficha.edita', ['diarias' => $diarias->id, 'apresenta'=>'editando']) }}" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
-                    </li>
-                    <li>|</li>
                     <li title="Imprimir">
                       <a href="{{ route('ficha.impressao', ['diarias' => $diarias->id]) }}" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-print" aria-hidden="true"></span></a>
                     </li>
                     @if ($diarias->ok_chefe_im != 'y')
+                      <li>|</li>
+                      <li title="Editar">
+                        <a href="{{ route('ficha.edita', ['diarias' => $diarias->id, 'apresenta'=>'editando']) }}" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+                      </li>
                       <li>|</li>
                       <li title="Excluir">
                         <form action="{{ route('ficha.destroy', ['diarias' => $diarias->id]) }}" onsubmit="return confirm('\nTem certeza que deseja excluir esta OS?'); return false;" method="post">

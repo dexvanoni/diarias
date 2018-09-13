@@ -130,7 +130,15 @@ body{
   border-right-style: solid;
 }
 .c17{
-  padding-left: 1em;
+
+  float: left;
+  padding-right: 2em;
+  border-right-style: solid;
+}
+.c17b{
+
+  padding-right: 2em;
+
 }
 .tabela6{
   border-style: solid;
