@@ -265,11 +265,30 @@ $val4 = Session::get('val4');
 
 
 <p></p>
+<div class="row">
+  <div title="Pagamento antecipado de diárias" class="col-md-6">
+    <div style="border: 1px solid #D3D3D3; border-radius:3px" class="input-group">
+      <span style="border: 1px solid #D3D3D3; border-radius:3px; font-size: 12px" class="input-group-addon" id="basic-addon1">22 - Antecipação de diária: <br> (Art.5° Decreto 5992/06)</span>
+      <div style="margin-top: 6px; margin-bottom: 6px">
+        &nbsp&nbsp&nbsp{!! Form::radio('ant_dir', 'SIM', null, ['id'=>'ant_dir']) !!}SIM&nbsp&nbsp&nbsp
+        {!! Form::radio('ant_dir', 'NÃO', null, ['id'=>'ant_dir']) !!}NÃO <br>
 
+      </div>
+      {!! Form::text('val_ant', null, array('class' => 'form-control input-sm', 'placeholder'=>'Valor: R$')) !!}
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="input-group">
+      <span class="input-group-addon" id="basic-addon1">23</span>
+      {!! Form::textarea('obs_ant', null, array('rows'=>'2', 'maxlength'=>'50', 'class' => 'form-control', 'placeholder'=>'OBSERVAÇÕES: (caso haja necessidade de informações adicionais)')) !!}
+    </div>
+  </div>
+</div>
+<p></p>
 <div class="row">
   <div class="col-md-4">
     <div class="input-group">
-      <span title='Informe o tipo de transporte. &#013;AE = Aéreo &#013;RD = Rodoviário &#013;VO = Veículo Oficial' style="border: 1px solid #D3D3D3; border-radius:3px" class="input-group-addon" id="basic-addon1">23 - TIPO DE TRANSP.:</span>
+      <span title='Informe o tipo de transporte. &#013;AE = Aéreo &#013;RD = Rodoviário &#013;VO = Veículo Oficial' style="border: 1px solid #D3D3D3; border-radius:3px" class="input-group-addon" id="basic-addon1">24 - TIPO DE TRANSP.:</span>
         &nbsp&nbsp&nbsp{!! Form::radio('tipo_transp', 'Aéreo', null, ['id'=>'tipo_transp', 'title' => 'Aéreo']) !!}AE&nbsp&nbsp&nbsp
         {!! Form::radio('tipo_transp', 'Rodoviário', null, ['id'=>'tipo_transp', 'title' => 'Rodoviário']) !!}RD&nbsp&nbsp&nbsp
         {!! Form::radio('tipo_transp', 'Veículo Oficial', null, ['id'=>'tipo_transp', 'title' => 'Veículo Oficial']) !!}VO
@@ -277,14 +296,14 @@ $val4 = Session::get('val4');
   </div>
     <div class="col-md-4">
       <div class="input-group">
-        <span title="Informe se faz jus a auxílio transporte" style="border: 1px solid #D3D3D3; border-radius:3px" class="input-group-addon" id="basic-addon1">24 - AUXÍLIO TRANSPORTE:&nbsp</span>
+        <span title="Informe se faz jus a auxílio transporte" style="border: 1px solid #D3D3D3; border-radius:3px" class="input-group-addon" id="basic-addon1">25 - AUXÍLIO TRANSPORTE:&nbsp</span>
         &nbsp&nbsp&nbsp{!! Form::radio('ax_t', 'SIM', null, ['id'=>'ax_t']) !!}SIM&nbsp&nbsp&nbsp
         {!! Form::radio('ax_t', 'NÃO', null, ['id'=>'ax_t']) !!}NÃO
       </div>
     </div>
     <div class="col-md-4">
       <div class="input-group">
-        <span title="Informe se faz jus a auxílio alimentação" style="border: 1px solid #D3D3D3; border-radius:3px" class="input-group-addon" id="basic-addon1">25 - AUXÍLIO ALIMENTAÇÃO:</span>
+        <span title="Informe se faz jus a auxílio alimentação" style="border: 1px solid #D3D3D3; border-radius:3px" class="input-group-addon" id="basic-addon1">26 - AUXÍLIO ALIMENTAÇÃO:</span>
           &nbsp&nbsp&nbsp{!! Form::radio('ax_a', 'SIM', null, ['id'=>'ax_a']) !!}SIM&nbsp&nbsp&nbsp
           {!! Form::radio('ax_a', 'NÃO', null, ['id'=>'ax_a']) !!}NÃO
       </div>
@@ -296,7 +315,7 @@ $val4 = Session::get('val4');
 <div class="row">
   <div title="JUSTIFICATIVA DA MISSÃO EM FINAL DE SEMANA / FERIADO: (§ 2º, Art. 5º, do Dec. 5.992/2006)" class="col-md-12">
     <div class="input-group">
-      <span class="input-group-addon" id="basic-addon1">26</span>
+      <span class="input-group-addon" id="basic-addon1">27</span>
       {!! Form::textarea('fim_semana', null, array('maxlength'=>'100','rows'=>'3', 'class' => 'form-control', 'placeholder'=>'JUSTIFICATIVA DA MISSÃO EM FINAL DE SEMANA / FERIADO: (§ 2º, Art. 5º, do Dec. 5.992/2006)')) !!}
     </div>
   </div>
@@ -306,7 +325,7 @@ $val4 = Session::get('val4');
 <div class="row">
   <div title="JUSTIFICATIVA DA CONVENIÊNCIA DO SERVIÇO: (Inciso 2.1.3, da ICA 177-42)" class="col-md-12">
     <div class="input-group">
-      <span class="input-group-addon" id="basic-addon1">27</span>
+      <span class="input-group-addon" id="basic-addon1">28</span>
       {!! Form::textarea('conveniencia_servico', null, array('maxlength'=>'100', 'rows'=>'3', 'class' => 'form-control', 'placeholder'=>'JUSTIFICATIVA DA CONVENIÊNCIA DO SERVIÇO: (Inciso 2.1.3, da ICA 177-42) - 100 caracteres')) !!}
     </div>
   </div>
@@ -316,7 +335,7 @@ $val4 = Session::get('val4');
 <div class="row">
   <div title="JUSTIFICATIVA: (Art 1º, da Portaria 1348/GC4/2015)" class="col-md-12">
     <div class="input-group">
-      <span class="input-group-addon" id="basic-addon1">28</span>
+      <span class="input-group-addon" id="basic-addon1">29</span>
       {!! Form::textarea('justificativa', null, array('maxlength'=>'100', 'rows'=>'3', 'class' => 'form-control', 'placeholder'=>'JUSTIFICATIVA: (Art 1º, da Portaria 1348/GC4/2015)')) !!}
     </div>
   </div>
@@ -374,7 +393,7 @@ $val4 = Session::get('val4');
 
   <div class="facd">
     <div class="row">
-      <h5><b>II - <sup>31</sup>FICHA DE APRESENTAÇÃO DE CONCESSÃO DE DIÁRIAS (FACD):</b></h5>
+      <h5><b>II - <sup>32</sup>FICHA DE APRESENTAÇÃO DE CONCESSÃO DE DIÁRIAS (FACD):</b></h5>
     </div>
     <p></p>
     <div class="row">
@@ -574,7 +593,7 @@ $val4 = Session::get('val4');
   <div class="homologa">
     <div class="col-md-12">
       <div class="row">
-        <h5><b>III - <sup>32</sup>HOMOLOGAÇÃO:</b></h5>
+        <h5><b>III - <sup>33</sup>HOMOLOGAÇÃO:</b></h5>
       </div>
     </div>
     <br>

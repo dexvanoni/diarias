@@ -31,6 +31,7 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
         <ul class="nav navbar-nav navbar-right">
+          <li><a href="{{ route('dashboard') }}">DASHBOARD</a></li>
           <li><a href="http://10.152.16.203/gapcg">GAP-CG</a></li>
           <li><a href="http://10.152.16.203/ala5">ALA5</a></li>
         </ul>

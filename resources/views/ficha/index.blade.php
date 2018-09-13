@@ -31,6 +31,7 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
         <ul class="nav navbar-nav navbar-right">
+          <li><a href="{{ route('dashboard') }}">DASHBOARD</a></li>
           <li><a href="http://10.152.16.203/gapcg">GAP-CG</a></li>
           <li><a href="http://10.152.16.203/ala5">ALA5</a></li>
         </ul>
@@ -115,14 +116,16 @@
                     <li title="Imprimir">
                       <a href="{{ route('ficha.impressao', ['diarias' => $diarias->id]) }}" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-print" aria-hidden="true"></span></a>
                     </li>
-                    <li>|</li>
-                    <li title="Excluir">
-                      <form action="{{ route('ficha.destroy', ['diarias' => $diarias->id]) }}" onsubmit="return confirm('\nTem certeza que deseja excluir esta OS?'); return false;" method="post">
-                        {{ csrf_field() }}
-                        {{ method_field('DELETE') }}
-                        <button type="submit" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-                      </form>
-                    </li>
+                    @if ($diarias->ok_chefe_im != 'y')
+                      <li>|</li>
+                      <li title="Excluir">
+                        <form action="{{ route('ficha.destroy', ['diarias' => $diarias->id]) }}" onsubmit="return confirm('\nTem certeza que deseja excluir esta OS?'); return false;" method="post">
+                          {{ csrf_field() }}
+                          {{ method_field('DELETE') }}
+                          <button type="submit" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                        </form>
+                      </li>
+                    @endif
                   @else
                     <li title="Ver">
                       <a href="{{ route('ficha.edita', ['diarias' => $diarias->id, 'apresenta'=>'apresenta']) }}" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-open-file" aria-hidden="true"></span></a>

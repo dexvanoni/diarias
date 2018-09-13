@@ -91,7 +91,10 @@ class Diaria extends Model
     'chefe_im',
     'ok_chefe_im',
     'nm_chefe_im',
-    'subtotal'
+    'subtotal',
+    'ant_dir',
+    'val_ant',
+    'obs_ant'
   ];
 
 

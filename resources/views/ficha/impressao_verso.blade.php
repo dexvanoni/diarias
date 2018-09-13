@@ -19,7 +19,7 @@
         <center><h6>Impressão de retorno</h6></center>
         <div class="tabela10b">
           <div class="c23">
-            <sup>22</sup> <strong>NÚMERO DE DIÁRIAS COMPUTADAS: (Homologado)</strong> <br> <strong>Diárias Completas:</strong> {{ $diaria->qtn_dc }} <strong>- 1/2 Diária:</strong> {{ $diaria->qtn_md }}
+            <sup>-</sup> <strong>NÚMERO DE DIÁRIAS COMPUTADAS: (Homologado)</strong> <br> <strong>Diárias Completas:</strong> {{ $diaria->qtn_dc }} <strong>- 1/2 Diária:</strong> {{ $diaria->qtn_md }}
           </div>
         </div>
         <div class="1">
@@ -182,6 +182,9 @@
 
           </div>
         </div>
+        @if ($diaria->saram != $diaria->dono)
+        <label style="text-size: 8px">Ordem de Serviço elaborada por: SARAM {{ $diaria->dono }}</label>
+        @endif
       </div><!--div "tudo"-->
 
     </div>

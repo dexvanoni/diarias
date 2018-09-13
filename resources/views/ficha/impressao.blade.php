@@ -113,33 +113,44 @@
         </div>
         <div class="tabela10">
           <div class="c23">
-            <sup>22</sup> <strong>NÚMERO DE DIÁRIAS COMPUTADAS:</strong> <br> <strong>Diárias Completas:</strong> {{ $diaria->qtn_dc }} <strong>- 1/2 Diária:</strong> {{ $diaria->qtn_md }}
+            <sup>-</sup> <strong>NÚMERO DE DIÁRIAS COMPUTADAS:</strong> <br> <strong>Diárias Completas:</strong> {{ $diaria->qtn_dc }} <strong>- 1/2 Diária:</strong> {{ $diaria->qtn_md }}
           </div>
         </div>
         <div class="tabela9">
           <div class="c20">
-            <sup>23</sup> <strong>TIPO DE TRANSPORTE:</strong> <br> {{ $diaria->tipo_transp }}
+            <sup>22</sup> <strong>Pagamento antecipado de diárias:</strong> <br> {{ $diaria->ant_dir }}
           </div>
           <div class="c21">
-            <sup>24</sup> <strong>AUX. TRANSPORTE:</strong> <br>{{ $diaria->ax_t }}
+            <sup>22</sup> <strong>Valor:</strong> <br>{{ $diaria->val_ant }}
           </div>
           <div class="c22">
-            <sup>25</sup> <strong>AUX. ALIMENTAÇÃO:</strong> <br>{{ $diaria->ax_a }}
+            <sup>23</sup> <strong>Obs:</strong> <br>{{ $diaria->obs_ant }}
+          </div>
+        </div>
+        <div class="tabela9">
+          <div class="c20">
+            <sup>24</sup> <strong>TIPO DE TRANSPORTE:</strong> <br> {{ $diaria->tipo_transp }}
+          </div>
+          <div class="c21">
+            <sup>25</sup> <strong>AUX. TRANSPORTE:</strong> <br>{{ $diaria->ax_t }}
+          </div>
+          <div class="c22">
+            <sup>26</sup> <strong>AUX. ALIMENTAÇÃO:</strong> <br>{{ $diaria->ax_a }}
           </div>
         </div>
         <div class="tabela10">
           <div class="c23">
-            <sup>26</sup> <strong>JUSTIFICATIVA DA MISSÃO EM FINAL DE SEMANA/FERIADO, DE ACORDO COM O ART. 5º, §2º DO DECRETO Nº 5.992:</strong> <br> {{ $diaria->fim_semana }}
+            <sup>27</sup> <strong>JUSTIFICATIVA DA MISSÃO EM FINAL DE SEMANA/FERIADO, DE ACORDO COM O ART. 5º, §2º DO DECRETO Nº 5.992:</strong> <br> {{ $diaria->fim_semana }}
           </div>
         </div>
         <div class="tabela11">
           <div class="c24">
-            <sup>27</sup> <strong>JUSTIFICATIVA DA CONVENIÊNCIA DO SERVIÇO: (Inciso 2.1.3, da ICA 177-42)</strong> <br> {{ $diaria->conveniencia_servico }}
+            <sup>28</sup> <strong>JUSTIFICATIVA DA CONVENIÊNCIA DO SERVIÇO: (Inciso 2.1.3, da ICA 177-42)</strong> <br> {{ $diaria->conveniencia_servico }}
           </div>
         </div>
         <div class="tabela12">
           <div class="c25">
-            <sup>28</sup> <strong>JUSTIFICATIVA: (Art 1º, da Portaria 1348/GC4/2015)</strong> <br> {{ $diaria->justificativa }}
+            <sup>29</sup> <strong>JUSTIFICATIVA: (Art 1º, da Portaria 1348/GC4/2015)</strong> <br> {{ $diaria->justificativa }}
           </div>
         </div>
 
@@ -148,7 +159,7 @@
           @if ($om == 'GAP-CG' )
             @if ($diaria->ok_chefe_im == 'y')
               <div class="proponho">
-                29 - PROPONHO:<br><br>
+                30 - PROPONHO:<br><br>
                 <label style="margin: 0px; padding: 0">_________________________________________________</label>
                 <center><strong><label style="text-size:10px">AUTORIZADO no sistema ATRIX por:</label></strong></center>
                 <center><label style="text-size:7px">SARAM: {{ $diaria->chefe_im }} - {{ $nome_chefe }} {{ $posto_chefe }}</label></center>
@@ -156,13 +167,13 @@
               </div>
               @else
                 <div class="proponho">
-                  29 - PROPONHO:<br><br>
+                  30 - PROPONHO:<br><br>
                   <center> ________________________________________</center>
                   <center>CHEFE DA DIVISÃO</center>
                 </div>
             @endif
             <div class="autorizo">
-              30 - AUTORIZO:<br><br>
+              31 - AUTORIZO:<br><br>
               <center>________________________________________ </center>
               <center>{{ $ch_gap->nome_completo }} - {{ $ch_gap->posto_grad }}</center>
               <center style="margin-left: 27em">CHEFE DO GAP-CG</center><br>
@@ -170,32 +181,32 @@
           @elseif ($om == 'ALA 5')
             @if ($diaria->ok_chefe_im == 'y')
               <div class="proponho">
-                29 - PROPONHO:<br><br>
+                30 - PROPONHO:<br><br>
                 <center><strong><label style="text-size:10px">AUTORIZADO no sistema ATRIX por:</label></strong></center>
                 <center><label style="text-size:7px">SARAM: {{ $diaria->chefe_im }} - {{ $nome_chefe }} {{ $posto_chefe }}</label></center>
                 <center>CMT ESQUADRÃO</center>
               </div>
               @else
                 <div class="proponho">
-                  29 - PROPONHO:<br><br>
+                  30 - PROPONHO:<br><br>
                   <center> ________________________________________</center>
                   <center>CMT ESQUADRÃO</center>
                 </div>
             @endif
             <div class="autorizo">
-              30 - AUTORIZO:<br><br>
+              31 - AUTORIZO:<br><br>
               <center>________________________________________ </center>
               <center>{{ $cmt_ala->nome_completo }} - {{ $cmt_ala->posto_grad }}</center>
               <center style="margin-left: 27em">COMANDANTE DA ALA-5</center><br>
             </div>
           @else
             <div class="proponho">
-              29 - PROPONHO:<br><br>
+              30 - PROPONHO:<br><br>
               <center> ________________________________________</center>
               <center>CMT ESQUADRÃO</center>
             </div>
             <div class="autorizo">
-              30 - AUTORIZO:<br>
+              31 - AUTORIZO:<br>
               <center>________________________________________ </center>
               <center>COMANDANTE DA ALA-5</center><br>
             </div>
@@ -363,9 +374,12 @@
 
           </div>
         </div>
+        @if ($diaria->saram != $diaria->dono)
+        <label style="text-size: 8px">Ordem de Serviço elaborada por: SARAM {{ $diaria->dono }}</label>
+        @endif
       </div><!--div "tudo"-->
 
-    </div>
+    </div><!--Limite folha A4-->
   </div>
   <!--<button class="btn btn-primary" type="button" name="button" onclick="window.print();">Imprimir</button>-->
 </body>

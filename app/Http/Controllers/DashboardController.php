@@ -244,8 +244,12 @@ class DashboardController extends Controller
     ->first();
     $posto_chefe = $p_chefe->pgabrev;
 
+    $cmt_ala =  Chefe::where('cargo', '=', 'COMANDANTE DA ALA-5')->first();
+    $ch_gap =  Chefe::where('cargo', '=', 'CHEFE DO GAP-CG')->first();
+    $ordenador =  Chefe::where('cargo', '=', 'ORDENADOR DE DESPESAS')->first();
+
     Session::flash('mensagem_print', 'Ordem de serviço enviada a impressora!');
-    return view('ficha.impressao_verso', compact('diaria', 'posto_chefe', 'nome_chefe'));
+    return view('ficha.impressao_verso', compact('diaria', 'posto_chefe', 'nome_chefe', 'cmt_ala', 'ch_gap', 'ordenador'));
   }
 
 
