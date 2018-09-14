@@ -133,9 +133,15 @@
           </div>
           <div class="c21">
             <sup>25</sup> <strong>AUX. TRANSPORTE:</strong> <br>{{ $diaria->ax_t }}
+            @if ($diaria->ax_t == 'SIM')
+              <strong>  - Valor: R$</strong> {{ $diaria->val_transp }}
+            @endif
           </div>
           <div class="c22">
             <sup>26</sup> <strong>AUX. ALIMENTAÇÃO:</strong> <br>{{ $diaria->ax_a }}
+            @if ($diaria->ax_a == 'SIM')
+              <strong>  - Valor: R$</strong> {{ $diaria->val_alim }}
+            @endif
           </div>
         </div>
         <div class="tabela10">
@@ -383,7 +389,7 @@
   </div>
   <!--<button class="btn btn-primary" type="button" name="button" onclick="window.print();">Imprimir</button>-->
 </body>
-<!--
+
 <script>
 $( document ).ready(function() {
 window.print();

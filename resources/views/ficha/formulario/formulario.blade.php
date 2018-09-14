@@ -244,23 +244,23 @@ $val4 = Session::get('val4');
       {!! Form::select('adicional_deslocamento', ['placeholder'=>'Informe se houve ou não adicional de deslocamento:', 'SIM'=>'SIM', 'NÃO'=> 'NÃO'], null, ['id'=>'h_d[0]', 'class' => 'form-control input-sm a'], null, ['title'=>'(§1º, do Art.20, do Dec. 4.307/2002, alterado pelo Dec.6.907/2009)']) !!}
       {!! Form::select('total_acrescimos', ['placeholder'=>'TOTAL DE ACRÉSCIMOS:', 'DIÁRIA COMPLETA'=>'DIÁRIA COMPLETA', '1/2 DIÁRIA'=> '1/2 DIÁRIA'], null, ['class' => 'form-control input-sm a', 'id'=>'total_acrescimos[0]'], null, ['title'=>'Informe se Diária completa ou 1/2 diária']) !!}
     </div>
-    </div>
-    <div class="col-md-6">
-      <div style="border: 1px solid #D3D3D3; border-radius:3px" class="input-group">
-        <span style="border: 1px solid #D3D3D3; border-radius:3px; font-size: 10px" class="input-group-addon" id="basic-addon1">21 - VALOR TOTAL (Diária + Adc. Desl.)<br><br><br>Sem custo = </span>
-        {!! Form::text('valor_total', null, array('title'=>'Valor total de diárias + adicionais de deslocamento', 'class' => 'form-control input-sm a', 'placeholder'=>'R$', 'id'=>'valor_total')) !!}
-        @if ($tela=='create')
+  </div>
+  <div class="col-md-6">
+    <div style="border: 1px solid #D3D3D3; border-radius:3px" class="input-group">
+      <span style="border: 1px solid #D3D3D3; border-radius:3px; font-size: 10px" class="input-group-addon" id="basic-addon1">21 - VALOR TOTAL (Diária + Adc. Desl.)<br><br><br>Sem custo = </span>
+      {!! Form::text('valor_total', null, array('title'=>'Valor total de diárias + adicionais de deslocamento', 'class' => 'form-control input-sm a', 'placeholder'=>'R$', 'id'=>'valor_total')) !!}
+      @if ($tela=='create')
+        {!! Form::input('checkbox', 'ck_valor_total', $value = "Sem Custo", $attributes = ['id'=>'zc[0]', 'class' => 'form-control input-sm a']) !!}
+      @else ($tela=='editando')
+        @if ($diaria->ck_valor_total)
+          {!! Form::input('checkbox', 'ck_valor_total', $value = "Sem Custo", $attributes = ['id'=>'zc[0]', 'class' => 'form-control input-sm a', 'checked' => 'checked']) !!}
+        @else
           {!! Form::input('checkbox', 'ck_valor_total', $value = "Sem Custo", $attributes = ['id'=>'zc[0]', 'class' => 'form-control input-sm a']) !!}
-        @else ($tela=='editando')
-          @if ($diaria->ck_valor_total)
-            {!! Form::input('checkbox', 'ck_valor_total', $value = "Sem Custo", $attributes = ['id'=>'zc[0]', 'class' => 'form-control input-sm a', 'checked' => 'checked']) !!}
-            @else
-              {!! Form::input('checkbox', 'ck_valor_total', $value = "Sem Custo", $attributes = ['id'=>'zc[0]', 'class' => 'form-control input-sm a']) !!}
-          @endif
         @endif
+      @endif
 
-      </div>
     </div>
+  </div>
 </div>
 
 
@@ -289,28 +289,45 @@ $val4 = Session::get('val4');
   <div class="col-md-4">
     <div class="input-group">
       <span title='Informe o tipo de transporte. &#013;AE = Aéreo &#013;RD = Rodoviário &#013;VO = Veículo Oficial' style="border: 1px solid #D3D3D3; border-radius:3px" class="input-group-addon" id="basic-addon1">24 - TIPO DE TRANSP.:</span>
-        &nbsp&nbsp&nbsp{!! Form::radio('tipo_transp', 'Aéreo', null, ['id'=>'tipo_transp', 'title' => 'Aéreo']) !!}AE&nbsp&nbsp&nbsp
-        {!! Form::radio('tipo_transp', 'Rodoviário', null, ['id'=>'tipo_transp', 'title' => 'Rodoviário']) !!}RD&nbsp&nbsp&nbsp
-        {!! Form::radio('tipo_transp', 'Veículo Oficial', null, ['id'=>'tipo_transp', 'title' => 'Veículo Oficial']) !!}VO
+      &nbsp&nbsp&nbsp{!! Form::radio('tipo_transp', 'Aéreo', null, ['id'=>'tipo_transp', 'title' => 'Aéreo']) !!}AE&nbsp&nbsp&nbsp
+      {!! Form::radio('tipo_transp', 'Rodoviário', null, ['id'=>'tipo_transp', 'title' => 'Rodoviário']) !!}RD&nbsp&nbsp&nbsp
+      {!! Form::radio('tipo_transp', 'Veículo Oficial', null, ['id'=>'tipo_transp', 'title' => 'Veículo Oficial']) !!}VO
     </div>
   </div>
-    <div class="col-md-4">
-      <div class="input-group">
-        <span title="Informe se faz jus a auxílio transporte" style="border: 1px solid #D3D3D3; border-radius:3px" class="input-group-addon" id="basic-addon1">25 - AUXÍLIO TRANSPORTE:&nbsp</span>
-        &nbsp&nbsp&nbsp{!! Form::radio('ax_t', 'SIM', null, ['id'=>'ax_t']) !!}SIM&nbsp&nbsp&nbsp
-        {!! Form::radio('ax_t', 'NÃO', null, ['id'=>'ax_t']) !!}NÃO
-      </div>
+  <div class="col-md-4">
+    <div class="input-group">
+      <span title="Informe se faz jus a auxílio transporte" style="border: 1px solid #D3D3D3; border-radius:3px" class="input-group-addon" id="basic-addon1">25 - AUXÍLIO TRANSPORTE:&nbsp</span>
+      &nbsp&nbsp&nbsp{!! Form::radio('ax_t', 'SIM', null, ['id'=>'ax_t_s']) !!}SIM&nbsp&nbsp&nbsp
+      {!! Form::radio('ax_t', 'NÃO', null, ['id'=>'ax_t_n']) !!}NÃO
     </div>
-    <div class="col-md-4">
-      <div class="input-group">
-        <span title="Informe se faz jus a auxílio alimentação" style="border: 1px solid #D3D3D3; border-radius:3px" class="input-group-addon" id="basic-addon1">26 - AUXÍLIO ALIMENTAÇÃO:</span>
-          &nbsp&nbsp&nbsp{!! Form::radio('ax_a', 'SIM', null, ['id'=>'ax_a']) !!}SIM&nbsp&nbsp&nbsp
-          {!! Form::radio('ax_a', 'NÃO', null, ['id'=>'ax_a']) !!}NÃO
-      </div>
+  </div>
+  <div class="col-md-4">
+    <div class="input-group">
+      <span title="Informe se faz jus a auxílio alimentação" style="border: 1px solid #D3D3D3; border-radius:3px" class="input-group-addon" id="basic-addon1">26 - AUXÍLIO ALIMENTAÇÃO:</span>
+      &nbsp&nbsp&nbsp{!! Form::radio('ax_a', 'SIM', null, ['id'=>'ax_a_s']) !!}SIM&nbsp&nbsp&nbsp
+      {!! Form::radio('ax_a', 'NÃO', null, ['id'=>'ax_a_n']) !!}NÃO
     </div>
+  </div>
 </div>
-<p></p>
-<label style="color: red">* As justificativas possuem o limite de 100 caracteres para preenchimento!</label>
+
+<div class="row" >
+  <div class="col-md-4 col-md-offset-4" id="val_t" >
+      <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1">Valor:</span>
+        {!! Form::text('val_transp', null, array('class' => 'form-control input-sm', 'placeholder'=>'Digite o valor do Aux. Transporte')) !!}
+      </div>
+  </div>
+  <div id="val_a" >
+      <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1">Valor:</span>
+        {!! Form::text('val_alim', null, array('class' => 'form-control input-sm', 'placeholder'=>'Digite o valor do Aux. Alimentação')) !!}
+      </div>
+  </div>
+</div>
+<br>
+<div class="row">
+  <label style="color: red">* As justificativas possuem o limite de 100 caracteres para preenchimento!</label>
+</div>
 <!-- nona linha da tabela-->
 <div class="row">
   <div title="JUSTIFICATIVA DA MISSÃO EM FINAL DE SEMANA / FERIADO: (§ 2º, Art. 5º, do Dec. 5.992/2006)" class="col-md-12">
@@ -347,316 +364,316 @@ $val4 = Session::get('val4');
     <div class="input-group">
       @if ($tela=='create')
         {!! Form::open(['method'=> 'GET',
-           'action'=>'DashboardController@create']) !!}
-        {!! Form::label('chefe_im', 'Selecione o seu chefe imediato para autorização:') !!}
-        {!! Form::select('chefe_im', $select, null, ['class'=>'form-control']) !!}
-        <label style="color: red">*Lista de oficiais cadastrados no SIMS</label>
-      @elseif ($tela == 'edit')
-        <strong>Chefe imediato para aprovação: <br>
-          SARAM</strong> {{ $diaria->chefe_im }} <br>
-          <strong>Nome: </strong>{{ $posto_chefe }} {{ $nome_chefe }} <br>
+          'action'=>'DashboardController@create']) !!}
+          {!! Form::label('chefe_im', 'Selecione o seu chefe imediato para autorização:') !!}
+          {!! Form::select('chefe_im', $select, null, ['class'=>'form-control']) !!}
+          <label style="color: red">*Lista de oficiais cadastrados no SIMS</label>
+        @elseif ($tela == 'edit')
+          <strong>Chefe imediato para aprovação: <br>
+            SARAM</strong> {{ $diaria->chefe_im }} <br>
+            <strong>Nome: </strong>{{ $posto_chefe }} {{ $nome_chefe }} <br>
 
-          @if ($diaria->ok_chefe_im == 'a')
-            <h5 style="color: red"><strong>AGUARDANDO AUTORIZAÇÃO DO CHEFE IMEDIATO!</strong></h5>
-            <strong>Alterar Chefe imediato?</strong>
-            {!! Form::radio('alt_chefe_im', 'SIM', null, ['id'=>'alt_chefe_im_s']) !!}SIM&nbsp&nbsp&nbsp
-            {!! Form::radio('alt_chefe_im', 'NÃO', null, ['id'=>'alt_chefe_im_n', 'checked'=>'checked']) !!}NÃO
-<br>
-            <div class="col-md-12" id="alt_chefe">
-              {!! Form::open(['method'=> 'GET',
-                'action'=>'DashboardController@create']) !!}
-                {!! Form::label('chefe_im', 'Selecione o seu chefe imediato para autorização:') !!}
-                {!! Form::select('chefe_im', $select, null, ['class'=>'form-control']) !!}
+            @if ($diaria->ok_chefe_im == 'a')
+              <h5 style="color: red"><strong>AGUARDANDO AUTORIZAÇÃO DO CHEFE IMEDIATO!</strong></h5>
+              <strong>Alterar Chefe imediato?</strong>
+              {!! Form::radio('alt_chefe_im', 'SIM', null, ['id'=>'alt_chefe_im_s']) !!}SIM&nbsp&nbsp&nbsp
+              {!! Form::radio('alt_chefe_im', 'NÃO', null, ['id'=>'alt_chefe_im_n', 'checked'=>'checked']) !!}NÃO
+              <br>
+              <div class="col-md-12" id="alt_chefe">
+                {!! Form::open(['method'=> 'GET',
+                  'action'=>'DashboardController@create']) !!}
+                  {!! Form::label('chefe_im', 'Selecione o seu chefe imediato para autorização:') !!}
+                  {!! Form::select('chefe_im', $select, null, ['class'=>'form-control']) !!}
 
-                <label style="color: red">*Lista de oficiais cadastrados no SIMS</label>
-              </div>
-            @elseif ($diaria->ok_chefe_im == 'n')
-              <h5 style="color: red"><strong>NÃO AUTORIZADO PELO CHEFE IMEDIATO!</strong></h5>
-            @elseif ($diaria->ok_chefe_im == 'y')
-              <h5 style="color: red"><strong>VERIFICADO E APROVADO PELO CHEFE IMEDIATO!</strong></h5>
+                  <label style="color: red">*Lista de oficiais cadastrados no SIMS</label>
+                </div>
+              @elseif ($diaria->ok_chefe_im == 'n')
+                <h5 style="color: red"><strong>NÃO AUTORIZADO PELO CHEFE IMEDIATO!</strong></h5>
+              @elseif ($diaria->ok_chefe_im == 'y')
+                <h5 style="color: red"><strong>VERIFICADO E APROVADO PELO CHEFE IMEDIATO!</strong></h5>
+              @endif
+              @if ($diaria->chefe_im == $don)
+                <strong>AUTORIZAÇÃO</strong>
+                {!! Form::radio('ok_chefe_im', 'y', null, ['id'=>'ok_chefe_im_s']) !!}SIM&nbsp&nbsp&nbsp
+                {!! Form::radio('ok_chefe_im', 'n', null, ['id'=>'ok_chefe_im_n']) !!}NÃO
+              @endif
             @endif
-            @if ($diaria->chefe_im == $don)
-              <strong>AUTORIZAÇÃO</strong>
-              {!! Form::radio('ok_chefe_im', 'y', null, ['id'=>'ok_chefe_im_s']) !!}SIM&nbsp&nbsp&nbsp
-              {!! Form::radio('ok_chefe_im', 'n', null, ['id'=>'ok_chefe_im_n']) !!}NÃO
-            @endif
-          @endif
 
-    </div>
-  </div>
-</div>
-<hr>
-
-<!-- ##########################  SEGUNDA SEÇÃO DA FICHA #############################################-->
-<!-- na tela de criação não aparece a FACD e nem HOMOLOGAÇÃO e na tela de edição não aparece a HOMOLOGAÇÃO. A HOMOLOGAÇÃO só aparece para o administrador -->
-<!-- decima TERCEIRA linha da tabela-->
-
-  <div class="facd">
-    <div class="row">
-      <h5><b>II - <sup>32</sup>FICHA DE APRESENTAÇÃO DE CONCESSÃO DE DIÁRIAS (FACD):</b></h5>
-    </div>
-    <p></p>
-    <div class="row">
-      <div style="border: 1px solid #D3D3D3; border-radius:3px" class="col-md-12">
-        <div class="col-md-10">
-          <label style="font-size: 10.5px">OCORRERAM, POR MOTIVO DE FORÇA MAIOR, ALTERAÇÕES NO LOCAL DE REALIZAÇÃO DO SERVIÇO E/OU NAS DATAS DE INÍCIO/RETORNO AUTORIZADOS INICIALMENTE?</label>
-        </div>
-        <div style="font-size: 10px" class="col-md-2">
-          <center>
-            {!! Form::radio('alteracao_servico', 'SIM', null, ['id'=>'alteracao_servico_s']) !!}SIM&nbsp&nbsp&nbsp
-            {!! Form::radio('alteracao_servico', 'NÃO', null, ['id'=>'alteracao_servico_n']) !!}NÃO
-          </center>
+          </div>
         </div>
       </div>
-      <!-- DIV abaixo só aparece se o radio (de cima) SIM for selecionado (jquery escrita no template) -->
-      <div class="col-md-12" id="camposExtras">
-        {!! Form::textarea('justificativa_alteracao', null, array('maxlength'=>'100', 'rows'=>'3', 'class' => 'form-control', 'placeholder'=>'JUSTIFICATIVA:')) !!}
-        <h5>Campo Grande, {!! Form::text('dia', null, array('size'=>'3')) !!} &nbsp de &nbsp {!! Form::text('mes', null,array('size' => '15')) !!}&nbsp de <?php echo date('Y');?>. Responsável pelo serviço: {!! Form::text('responsavel', null,array('size' => '20')) !!} </h5>
+      <hr>
+
+      <!-- ##########################  SEGUNDA SEÇÃO DA FICHA #############################################-->
+      <!-- na tela de criação não aparece a FACD e nem HOMOLOGAÇÃO e na tela de edição não aparece a HOMOLOGAÇÃO. A HOMOLOGAÇÃO só aparece para o administrador -->
+      <!-- decima TERCEIRA linha da tabela-->
+
+      <div class="facd">
+        <div class="row">
+          <h5><b>II - <sup>32</sup>FICHA DE APRESENTAÇÃO DE CONCESSÃO DE DIÁRIAS (FACD):</b></h5>
+        </div>
+        <p></p>
+        <div class="row">
+          <div style="border: 1px solid #D3D3D3; border-radius:3px" class="col-md-12">
+            <div class="col-md-10">
+              <label style="font-size: 10.5px">OCORRERAM, POR MOTIVO DE FORÇA MAIOR, ALTERAÇÕES NO LOCAL DE REALIZAÇÃO DO SERVIÇO E/OU NAS DATAS DE INÍCIO/RETORNO AUTORIZADOS INICIALMENTE?</label>
+            </div>
+            <div style="font-size: 10px" class="col-md-2">
+              <center>
+                {!! Form::radio('alteracao_servico', 'SIM', null, ['id'=>'alteracao_servico_s']) !!}SIM&nbsp&nbsp&nbsp
+                {!! Form::radio('alteracao_servico', 'NÃO', null, ['id'=>'alteracao_servico_n']) !!}NÃO
+              </center>
+            </div>
+          </div>
+          <!-- DIV abaixo só aparece se o radio (de cima) SIM for selecionado (jquery escrita no template) -->
+          <div class="col-md-12" id="camposExtras">
+            {!! Form::textarea('justificativa_alteracao', null, array('maxlength'=>'100', 'rows'=>'3', 'class' => 'form-control', 'placeholder'=>'JUSTIFICATIVA:')) !!}
+            <h5>Campo Grande, {!! Form::text('dia', null, array('size'=>'3')) !!} &nbsp de &nbsp {!! Form::text('mes', null,array('size' => '15')) !!}&nbsp de <?php echo date('Y');?>. Responsável pelo serviço: {!! Form::text('responsavel', null,array('size' => '20')) !!} </h5>
+          </div>
+        </div>
       </div>
-    </div>
-    </div>
-<hr>
-<label style="color: red">* NÃO utilizar "vírgula" em campos numéricos, somente "ponto"! - Ex.: 1550.30 </label>
-  <div style="border: 1px solid #D3D3D3; border-radius:3px" class="row">
-    <center><h5><b>CÔMPUTO DE DIÁRIAS E ACRÉSCIMOS - POR LOCALIDADE</b></h5></center>
-  </div>
-  <!-- IDENTIFICAÇÃO DOS CAMPOS DA TABELA-->
-  <div style="border: 1px solid #D3D3D3; border-radius:3px" class="row">
-    <div class="col-md-2">
-      <center><b>Valor</b></center>
-    </div>
-    <div class="col-md-6">
-      <center><b>Cidades</b></center>
-    </div>
-    <div class="col-md-2">
-      <center><b>Quantidade</b></center>
-    </div>
-    <div class="col-md-2">
-      <center><b>Subtotal</b></center>
-    </div>
-  </div>
-  <div style="border: 1px solid #D3D3D3; border-radius:3px"  class="row">
-    <!-- PRIMEIRA LINHA DA TABELA-->
-    <div class="row">
-      <div class="col-md-2">
-        <center>{!! Form::text('val_br_am_rj', null, array('size'=>'6', 'id'=>'a')) !!}</center>
+      <hr>
+      <label style="color: red">* NÃO utilizar "vírgula" em campos numéricos, somente "ponto"! - Ex.: 1550.30 </label>
+      <div style="border: 1px solid #D3D3D3; border-radius:3px" class="row">
+        <center><h5><b>CÔMPUTO DE DIÁRIAS E ACRÉSCIMOS - POR LOCALIDADE</b></h5></center>
       </div>
-      <div class="col-md-6">
-        <center><h6>Brasília, Manaus, Rio de Janeiro</h6></center>
+      <!-- IDENTIFICAÇÃO DOS CAMPOS DA TABELA-->
+      <div style="border: 1px solid #D3D3D3; border-radius:3px" class="row">
+        <div class="col-md-2">
+          <center><b>Valor</b></center>
+        </div>
+        <div class="col-md-6">
+          <center><b>Cidades</b></center>
+        </div>
+        <div class="col-md-2">
+          <center><b>Quantidade</b></center>
+        </div>
+        <div class="col-md-2">
+          <center><b>Subtotal</b></center>
+        </div>
       </div>
-      <div class="col-md-2">
-        <center>{!! Form::text('qt_br_am_rj', null, array('size'=>'6', 'id'=>'a1', 'onblur'=>'calcular_total()')) !!} </center>
+      <div style="border: 1px solid #D3D3D3; border-radius:3px"  class="row">
+        <!-- PRIMEIRA LINHA DA TABELA-->
+        <div class="row">
+          <div class="col-md-2">
+            <center>{!! Form::text('val_br_am_rj', null, array('size'=>'6', 'id'=>'a')) !!}</center>
+          </div>
+          <div class="col-md-6">
+            <center><h6>Brasília, Manaus, Rio de Janeiro</h6></center>
+          </div>
+          <div class="col-md-2">
+            <center>{!! Form::text('qt_br_am_rj', null, array('size'=>'6', 'id'=>'a1', 'onblur'=>'calcular_total()')) !!} </center>
+          </div>
+          <div class="col-md-2">
+            <center>{!! Form::text('resultado1', null, array('size'=>'6', 'id'=>'resultado1', 'onblur'=>'calcular()')) !!}</center>
+          </div>
+        </div>
+        <!-- SEGUNDA LINHA DA TABELA-->
+        <div class="row">
+          <div class="col-md-2">
+            <center>{!! Form::text('val_bh_fl_pa_rc_sl_sp', null, array('size'=>'6', 'id'=>'b')) !!}</center>
+          </div>
+          <div class="col-md-6">
+            <center><h6>Belo Horizonte, Fortaleza, Porto Alegre, Recife, Salvador e São Paulo</h6></center>
+          </div>
+          <div class="col-md-2">
+            <center>{!! Form::text('qt_bh_fl_pa_rc_sl_sp', null, array('size'=>'6', 'id'=>'b1', 'onblur'=>'calcular_total()')) !!}</center>
+          </div>
+          <div class="col-md-2">
+            <center>{!! Form::text('resultado2', null, array('size'=>'6', 'id'=>'resultado2', 'onblur'=>'calcular()')) !!}</center>
+          </div>
+        </div>
+        <!-- TERCEIRA LINHA DA TABELA-->
+        <div class="row">
+          <div class="col-md-2">
+            <center>{!! Form::text('val_capitais', null, array('size'=>'6', 'id'=>'c')) !!}</center>
+          </div>
+          <div class="col-md-6">
+            <center><h6>Demais capitais de Estado</h6></center>
+          </div>
+          <div class="col-md-2">
+            <center>{!! Form::text('qt_capitais', null, array('size'=>'6', 'id'=>'c1', 'onblur'=>'calcular_total()')) !!}</center>
+          </div>
+          <div class="col-md-2">
+            <center>{!! Form::text('resultado3', null, array('size'=>'6', 'id'=>'resultado3', 'onblur'=>'calcular()')) !!}</center>
+          </div>
+        </div>
+        <!-- QUARTA LINHA DA TABELA-->
+        <div class="row">
+          <div class="col-md-2">
+            <center>{!! Form::text('val_cidades', null, array('size'=>'6', 'id'=>'d')) !!}</center>
+          </div>
+          <div class="col-md-6">
+            <center><h6>Demais Cidades</h6></center>
+          </div>
+          <div class="col-md-2">
+            <center>{!! Form::text('qt_cidades', null, array('size'=>'6', 'id'=>'d1', 'onblur'=>'calcular_total()')) !!}</center>
+          </div>
+          <div class="col-md-2">
+            <center>{!! Form::text('resultado4', null, array('size'=>'6', 'id'=>'resultado4', 'onblur'=>'calcular()')) !!}</center>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2 col-md-offset-10">
+            <center>Total: {!! Form::text('subtotal', null, array('size'=>'6', 'id'=>'subtotal' )) !!}</center>
+          </div>
+        </div>
+        <!-- LINHA DE ACRÉSCIMOS-->
+        <hr>
+        <div class="row">
+          <div class="col-md-8">
+            <center><h6><b>Acréscimos de Deslocamento</b></h6></center>
+          </div>
+          <div class="col-md-2">
+            <center>{!! Form::input('text', 'qt_acrescimo', null, $attributes = ['id'=>'qt_acrescimo', 'size'=>'6']) !!} </center>
+          </div>
+          <div class="col-md-2">
+            <center>{!! Form::input('text', 'val_ac', null, $attributes = ['id'=>'val_ac','size'=>'6', 'onblur'=>'calcular_total()']) !!}</center>
+          </div>
+        </div>
+        <!-- LINHA DE DESCONTOS-->
+        <hr>
+        <div class="row">
+          <div class="col-md-2">
+            <center><b>Valor Diário</b></center>
+          </div>
+          <div class="col-md-6">
+            <center><b>Cômputo de Descontos</b></center>
+          </div>
+          <div class="col-md-2">
+            <center><b>Dias Úteis</b></center>
+          </div>
+          <div class="col-md-2">
+            <center><b>Subtotal</b></center>
+          </div>
+        </div>
+        <!-- PRIMEIRA LINHA DESCONTO-->
+        <div class="row">
+          <div class="col-md-2">
+            <center>{!! Form::text('desc_a', null, array('size'=>'6', 'id'=>'desc_a')) !!}</center>
+          </div>
+          <div class="col-md-6">
+            <center><h6>Auxílio Alimentação - Valor líquido mensal: R$ 0</h6></center>
+          </div>
+          <div class="col-md-2">
+            <center>{!! Form::text('qt_dias_a', null, array('size'=>'6', 'id'=>'qt_dias_a')) !!}</center>
+          </div>
+          <div class="col-md-2">
+            <center>{!! Form::text('resultado_dias_a', null, array('size'=>'6', 'id'=>'resultado_dias_a', 'onblur'=>'calcular_total()')) !!}</center>
+          </div>
+        </div>
+        <!-- SEGUNDA LINHA DESCONTO-->
+        <div class="row">
+          <div class="col-md-2">
+            <center>{!! Form::text('desc_b', null, array('size'=>'6', 'id'=>'desc_b')) !!}</center>
+          </div>
+          <div class="col-md-6">
+            <center><h6>Auxílio Transporte - Valor líquido mensal: R$ 0</h6></center>
+          </div>
+          <div class="col-md-2">
+            <center>{!! Form::text('qt_dias_b', null, array('size'=>'6', 'id'=>'qt_dias_b')) !!}</center>
+          </div>
+          <div class="col-md-2">
+            <center>{!! Form::text('resultado_dias_b', null, array('size'=>'6', 'id'=>'resultado_dias_b', 'onblur'=>'calcular_total()')) !!}</center>
+          </div>
+        </div>
+        <hr>
+        <h4>Número de diárias completas computadas: {!! Form::text('qtn_dc', null, array('size'=>'6', 'id'=>'qtn_dc')) !!}</h4>
+        <h4>Número de 1/2 diárias computadas: {!! Form::text('qtn_md', null, array('size'=>'6', 'id'=>'qtn_md')) !!}</h4>
+        <div class="row">
+          <div class="col-md-2 col-md-offset-10">
+            <button type="button" name="limpar_diarias" onclick="limpa_diarias()">Limpar</button>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-md-4">
+            &nbsp&nbspPublique-se: <br> &nbsp&nbspCampo Grande/MS, {{ date('d/m/Y') }}
+          </div>
+          <div class="col-md-4">
+            <center><p> ________________________________________ </p></center>
+            <center><p>ORDENADOR DE DESPESAS</p></center>
+          </div>
+          <div class="col-md-2">
+            <center><b>TOTAL</b></center>
+          </div>
+          <div class="col-md-2">
+            <center>{!! Form::text('resultado_total', null, array('size'=>'6', 'id'=>'resultado_total')) !!}</center>
+          </div>
+        </div>
       </div>
-      <div class="col-md-2">
-        <center>{!! Form::text('resultado1', null, array('size'=>'6', 'id'=>'resultado1', 'onblur'=>'calcular()')) !!}</center>
-      </div>
-    </div>
-    <!-- SEGUNDA LINHA DA TABELA-->
-    <div class="row">
-      <div class="col-md-2">
-        <center>{!! Form::text('val_bh_fl_pa_rc_sl_sp', null, array('size'=>'6', 'id'=>'b')) !!}</center>
-      </div>
-      <div class="col-md-6">
-        <center><h6>Belo Horizonte, Fortaleza, Porto Alegre, Recife, Salvador e São Paulo</h6></center>
-      </div>
-      <div class="col-md-2">
-        <center>{!! Form::text('qt_bh_fl_pa_rc_sl_sp', null, array('size'=>'6', 'id'=>'b1', 'onblur'=>'calcular_total()')) !!}</center>
-      </div>
-      <div class="col-md-2">
-        <center>{!! Form::text('resultado2', null, array('size'=>'6', 'id'=>'resultado2', 'onblur'=>'calcular()')) !!}</center>
-      </div>
-    </div>
-    <!-- TERCEIRA LINHA DA TABELA-->
-    <div class="row">
-      <div class="col-md-2">
-        <center>{!! Form::text('val_capitais', null, array('size'=>'6', 'id'=>'c')) !!}</center>
-      </div>
-      <div class="col-md-6">
-        <center><h6>Demais capitais de Estado</h6></center>
-      </div>
-      <div class="col-md-2">
-        <center>{!! Form::text('qt_capitais', null, array('size'=>'6', 'id'=>'c1', 'onblur'=>'calcular_total()')) !!}</center>
-      </div>
-      <div class="col-md-2">
-        <center>{!! Form::text('resultado3', null, array('size'=>'6', 'id'=>'resultado3', 'onblur'=>'calcular()')) !!}</center>
-      </div>
-    </div>
-    <!-- QUARTA LINHA DA TABELA-->
-    <div class="row">
-      <div class="col-md-2">
-        <center>{!! Form::text('val_cidades', null, array('size'=>'6', 'id'=>'d')) !!}</center>
-      </div>
-      <div class="col-md-6">
-        <center><h6>Demais Cidades</h6></center>
-      </div>
-      <div class="col-md-2">
-        <center>{!! Form::text('qt_cidades', null, array('size'=>'6', 'id'=>'d1', 'onblur'=>'calcular_total()')) !!}</center>
-      </div>
-      <div class="col-md-2">
-        <center>{!! Form::text('resultado4', null, array('size'=>'6', 'id'=>'resultado4', 'onblur'=>'calcular()')) !!}</center>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-2 col-md-offset-10">
-        <center>Total: {!! Form::text('subtotal', null, array('size'=>'6', 'id'=>'subtotal' )) !!}</center>
-      </div>
-    </div>
-    <!-- LINHA DE ACRÉSCIMOS-->
-    <hr>
-    <div class="row">
-      <div class="col-md-8">
-        <center><h6><b>Acréscimos de Deslocamento</b></h6></center>
-      </div>
-      <div class="col-md-2">
-        <center>{!! Form::input('text', 'qt_acrescimo', null, $attributes = ['id'=>'qt_acrescimo', 'size'=>'6']) !!} </center>
-      </div>
-      <div class="col-md-2">
-        <center>{!! Form::input('text', 'val_ac', null, $attributes = ['id'=>'val_ac','size'=>'6', 'onblur'=>'calcular_total()']) !!}</center>
-      </div>
-    </div>
-    <!-- LINHA DE DESCONTOS-->
-    <hr>
-    <div class="row">
-      <div class="col-md-2">
-        <center><b>Valor Diário</b></center>
-      </div>
-      <div class="col-md-6">
-        <center><b>Cômputo de Descontos</b></center>
-      </div>
-      <div class="col-md-2">
-        <center><b>Dias Úteis</b></center>
-      </div>
-      <div class="col-md-2">
-        <center><b>Subtotal</b></center>
-      </div>
-    </div>
-    <!-- PRIMEIRA LINHA DESCONTO-->
-    <div class="row">
-      <div class="col-md-2">
-        <center>{!! Form::text('desc_a', null, array('size'=>'6', 'id'=>'desc_a')) !!}</center>
-      </div>
-      <div class="col-md-6">
-        <center><h6>Auxílio Alimentação - Valor líquido mensal: R$ 0</h6></center>
-      </div>
-      <div class="col-md-2">
-        <center>{!! Form::text('qt_dias_a', null, array('size'=>'6', 'id'=>'qt_dias_a')) !!}</center>
-      </div>
-      <div class="col-md-2">
-        <center>{!! Form::text('resultado_dias_a', null, array('size'=>'6', 'id'=>'resultado_dias_a', 'onblur'=>'calcular_total()')) !!}</center>
-      </div>
-    </div>
-    <!-- SEGUNDA LINHA DESCONTO-->
-    <div class="row">
-      <div class="col-md-2">
-        <center>{!! Form::text('desc_b', null, array('size'=>'6', 'id'=>'desc_b')) !!}</center>
-      </div>
-      <div class="col-md-6">
-        <center><h6>Auxílio Transporte - Valor líquido mensal: R$ 0</h6></center>
-      </div>
-      <div class="col-md-2">
-        <center>{!! Form::text('qt_dias_b', null, array('size'=>'6', 'id'=>'qt_dias_b')) !!}</center>
-      </div>
-      <div class="col-md-2">
-        <center>{!! Form::text('resultado_dias_b', null, array('size'=>'6', 'id'=>'resultado_dias_b', 'onblur'=>'calcular_total()')) !!}</center>
-      </div>
-    </div>
-    <hr>
-    <h4>Número de diárias completas computadas: {!! Form::text('qtn_dc', null, array('size'=>'6', 'id'=>'qtn_dc')) !!}</h4>
-    <h4>Número de 1/2 diárias computadas: {!! Form::text('qtn_md', null, array('size'=>'6', 'id'=>'qtn_md')) !!}</h4>
-    <div class="row">
-      <div class="col-md-2 col-md-offset-10">
-        <button type="button" name="limpar_diarias" onclick="limpa_diarias()">Limpar</button>
-      </div>
-    </div>
-    <hr>
-    <div class="row">
-      <div class="col-md-4">
-        &nbsp&nbspPublique-se: <br> &nbsp&nbspCampo Grande/MS, {{ date('d/m/Y') }}
-      </div>
-      <div class="col-md-4">
-        <center><p> ________________________________________ </p></center>
-        <center><p>ORDENADOR DE DESPESAS</p></center>
-      </div>
-      <div class="col-md-2">
-        <center><b>TOTAL</b></center>
-      </div>
-      <div class="col-md-2">
-        <center>{!! Form::text('resultado_total', null, array('size'=>'6', 'id'=>'resultado_total')) !!}</center>
-      </div>
-    </div>
-  </div>
 
 
 
-<!--HOMOLOGAÇÃO SOMENTE PARA ADMINISTRADOR-->
+      <!--HOMOLOGAÇÃO SOMENTE PARA ADMINISTRADOR-->
 
-  <div class="homologa">
-    <div class="col-md-12">
-      <div class="row">
-        <h5><b>III - <sup>33</sup>HOMOLOGAÇÃO:</b></h5>
-      </div>
-    </div>
-    <br>
-    <div class="col-md-offset-2">
-      <div class="row">
+      <div class="homologa">
+        <div class="col-md-12">
+          <div class="row">
+            <h5><b>III - <sup>33</sup>HOMOLOGAÇÃO:</b></h5>
+          </div>
+        </div>
         <br>
-        <p>a) Homologo a concessão de diárias</p>
-      </div>
-      <div class="row">
-        <p>b) 1. {!! Form::checkbox('conforme_previsto', 'Conforme previsto na presente Ordem de Serviço', false) !!} Conforme previsto na presente Ordem de Serviço</p>
-      </div>
-      <div class="row">
-        <p>2. {!! Form::checkbox('conforme_forca_maior', 'Conforme a seguir, por motivo de força maior',  false) !!} Conforme a seguir, por motivo de força maior.</p>
-      </div>
-      <div class="row">
-        <p>1/2 diária - Qtd: {!! Form::text('qt_meia_diaria', null, array('size'=>'3', 'id'=>'qt_meia_diaria')) !!} referente a localidade de {!! Form::text('localidade_meia_diaria', null, array('size'=>'25')) !!}</p>
-      </div>
-      <div class="row">
-        <p>Diária Completa - {!! Form::text('qt_diaria_completa', null, array('size'=>'3', 'id'=>'qt_diaria_completa')) !!} referente a pernoite(s) em {!! Form::text('localidade_diaria_completa', null, array('size'=>'45')) !!}</p>
-      </div>
-      <div class="row">
-        <p>Número total de acréscimos: {!! Form::text('num_total_acrescimos', null, array('size'=>'3', 'id'=>'num_total_acrescimos')) !!}</p>
-      </div>
-      <div class="row">
-        3. Restituição a efetuar:&nbsp&nbsp&nbsp&nbsp
-        <div class="radio-inline">
-          {!! Form::radio('restituicao', 'SIM') !!}SIM&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-          {!! Form::radio('restituicao', 'NÃO') !!}NÃO&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        <div class="col-md-offset-2">
+          <div class="row">
+            <br>
+            <p>a) Homologo a concessão de diárias</p>
+          </div>
+          <div class="row">
+            <p>b) 1. {!! Form::checkbox('conforme_previsto', 'Conforme previsto na presente Ordem de Serviço', false) !!} Conforme previsto na presente Ordem de Serviço</p>
+          </div>
+          <div class="row">
+            <p>2. {!! Form::checkbox('conforme_forca_maior', 'Conforme a seguir, por motivo de força maior',  false) !!} Conforme a seguir, por motivo de força maior.</p>
+          </div>
+          <div class="row">
+            <p>1/2 diária - Qtd: {!! Form::text('qt_meia_diaria', null, array('size'=>'3', 'id'=>'qt_meia_diaria')) !!} referente a localidade de {!! Form::text('localidade_meia_diaria', null, array('size'=>'25')) !!}</p>
+          </div>
+          <div class="row">
+            <p>Diária Completa - {!! Form::text('qt_diaria_completa', null, array('size'=>'3', 'id'=>'qt_diaria_completa')) !!} referente a pernoite(s) em {!! Form::text('localidade_diaria_completa', null, array('size'=>'45')) !!}</p>
+          </div>
+          <div class="row">
+            <p>Número total de acréscimos: {!! Form::text('num_total_acrescimos', null, array('size'=>'3', 'id'=>'num_total_acrescimos')) !!}</p>
+          </div>
+          <div class="row">
+            3. Restituição a efetuar:&nbsp&nbsp&nbsp&nbsp
+            <div class="radio-inline">
+              {!! Form::radio('restituicao', 'SIM') !!}SIM&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              {!! Form::radio('restituicao', 'NÃO') !!}NÃO&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            </div>
+            Valor: R$ {!! Form::text('valor_restituicao', null, array('size'=>'15', 'id'=>'valor_restituicao')) !!}
+          </div>
+          <div class="row">
+            <br><br>
+            <p>Publique-se:____________________________________________________________</p>
+            <br>
+          </div>
+
         </div>
-        Valor: R$ {!! Form::text('valor_restituicao', null, array('size'=>'15', 'id'=>'valor_restituicao')) !!}
-      </div>
-      <div class="row">
-        <br><br>
-        <p>Publique-se:____________________________________________________________</p>
-        <br>
-      </div>
+        @php
+        $d1 = Session::get('pescodigo');
+        $dono = Session::get('dono');
+        $administrador = Session::get('administrador');
+        @endphp
+        @if ($administrador and $tela != 'create')
+          <h6 style="color: red">OS concluída?</h6>
+          <div class="radio-inline">
+            {!! Form::radio('concluido', 'SIM') !!}SIM&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            {!! Form::radio('concluido', 'NÃO') !!}NÃO&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+          </div>
+          <br><br>
+          <strong>Obs.: O solicitante NÃO poderá editar ou excluir a OS após a conclusão da mesma!:</strong> &nbsp&nbsp&nbsp&nbsp
+        @endif
 
-    </div>
-    @php
-      $d1 = Session::get('pescodigo');
-      $dono = Session::get('dono');
-      $administrador = Session::get('administrador');
-    @endphp
-    @if ($administrador and $tela != 'create')
-      <h6 style="color: red">OS concluída?</h6>
-      <div class="radio-inline">
-        {!! Form::radio('concluido', 'SIM') !!}SIM&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-        {!! Form::radio('concluido', 'NÃO') !!}NÃO&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
       </div>
-      <br><br>
-      <strong>Obs.: O solicitante NÃO poderá editar ou excluir a OS após a conclusão da mesma!:</strong> &nbsp&nbsp&nbsp&nbsp
-    @endif
+      <br>
+      @if ($tela == 'edit' and $apresenta == 'apresenta')
+        <h6 style="color: red"><strong>Obs.: Ordem de serviço já concluída! Somente leitura, qualquer alteração realizada neste formulário NÃO será efetivada na ordem de serviço em tela.</strong></h6>
+      @else
+        @if ($tela == 'create')
+          <input type="hidden" name="concluido" value="NÃO">
+          <input type="hidden" name="ok_chefe_im" value="a">
 
-  </div>
-<br>
-@if ($tela == 'edit' and $apresenta == 'apresenta')
-  <h6 style="color: red"><strong>Obs.: Ordem de serviço já concluída! Somente leitura, qualquer alteração realizada neste formulário NÃO será efetivada na ordem de serviço em tela.</strong></h6>
-@else
-  @if ($tela == 'create')
-    <input type="hidden" name="concluido" value="NÃO">
-    <input type="hidden" name="ok_chefe_im" value="a">
-
-  @endif
-  <input type="submit" name="envia" id="sub" value="Salvar" class="btn btn-primary">
-  {{ Form::reset('Limpar', array('class'=>'btn btn-danger')) }}
-@endif
+        @endif
+        <input type="submit" name="envia" id="sub" value="Salvar" class="btn btn-primary">
+        {{ Form::reset('Limpar', array('class'=>'btn btn-danger')) }}
+      @endif

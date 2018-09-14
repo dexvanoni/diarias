@@ -175,9 +175,35 @@ if (a == 'print'){
 // campos extras para justificativa
 if ( a == 'edit') {
   $('#camposExtras').show();
+  $('#val_a').show();
+  $('#val_t').show();
 } else {
   $('#camposExtras').hide();
+  $('#val_a').hide();
+  $('#val_t').hide();
 };
+
+$("#ax_t_s").click(function(){
+  $('#val_t').show();
+});
+$("#ax_a_s").click(function(){
+  $('#val_a').show();
+  var ch = $("#ax_t_s").prop("checked");
+  if (ch) {
+    $('#val_a').prop("class", "col-md-4");
+  }else {
+    $('#val_a').prop("class", "col-md-4 col-md-offset-8");
+  }
+});
+
+$("#ax_t_n").click(function(){
+  $('#val_t').hide();
+  $('#val_tranp').val(0);
+});
+$("#ax_a_n").click(function(){
+  $('#val_a').hide();
+  $('#val_alim').val(0);
+});
 
 $("#alteracao_servico_s").click(function(){
   $('#camposExtras').show();

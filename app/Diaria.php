@@ -94,7 +94,9 @@ class Diaria extends Model
     'subtotal',
     'ant_dir',
     'val_ant',
-    'obs_ant'
+    'obs_ant',
+    'val_transp',
+    'val_alim'
   ];
 
 
