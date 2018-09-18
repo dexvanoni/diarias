@@ -43,7 +43,7 @@
             <li><a href="{{ route('verTodasOs') }}">Administração</a></li>
           @endif
           @php
-          $ofs = array("15", "9", "10", "11", "4", "5", "8", "24", "27", "1", "3", "7", "2", "6");
+          $ofs = array("9", "10", "11", "4", "5", "8", "24", "27", "1", "3", "7", "2", "6");
           @endphp
           @if (in_array($usuario->pespostograd, $ofs))
             <li><a href="{{ route('aprova') }}">Aprovação</a></li>
@@ -64,6 +64,13 @@
 </div>
 
   </div>
+@if (Session::has('msg'))
+    <div class="alert alert-danger">
+        <ul>
+            <li>{{ Session::get('msg') }}</li>
+        </ul>
+    </div>
+@endif
 
   @if (Session::has('mensagem_sembanco'))
     <div class="alert alert-danger">

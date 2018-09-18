@@ -250,6 +250,14 @@ class LogInController extends Controller
             Session::pull('pescontacorrente');
 
             $usuario = User::where('pescodigo', '=', $request->get('outro_militar'))->first();
+
+		if (!$usuario){
+//			return Redirect::back();
+//			return Redirect::back()->with('success', ['Usuário não cadastrado no SIMS']);
+			session()->flash('msg', 'Usuário não cadastrado no SIMS.');
+			    return redirect()->route('voltarPerfil');
+		}
+
             $posto = DB::table('tb_posto_graduacao')
             ->select('pgabrev')
             ->where('pgid', '=', $usuario->pespostograd)

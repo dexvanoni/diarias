@@ -54,6 +54,7 @@
                 </div>
               </div>
           {{ Form::close() }}
+
           <div class="row">
 
              &nbsp&nbsp&nbspDesenvolvido por 3S SIN Vanoni | SDTIC-GAPCG

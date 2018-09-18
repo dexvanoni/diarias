@@ -392,8 +392,9 @@
 
 <script>
 $( document ).ready(function() {
-window.print();
-history.back();
+//window.print();
+//history.back();
+alert("Aperte Ctrl + p para Imprimir a OS.");
 });
 </script>
 -->
