@@ -619,12 +619,22 @@ $val4 = Session::get('val4');
             <br>
             <p>a) Homologo a concessão de diárias</p>
           </div>
-          <div class="row">
-            <p>b) 1. {!! Form::checkbox('conforme_previsto', 'Conforme previsto na presente Ordem de Serviço', false) !!} Conforme previsto na presente Ordem de Serviço</p>
-          </div>
-          <div class="row">
-            <p>2. {!! Form::checkbox('conforme_forca_maior', 'Conforme a seguir, por motivo de força maior',  false) !!} Conforme a seguir, por motivo de força maior.</p>
-          </div>
+          @if ($tela == 'create')
+            <div class="row">
+              <p>b) 1. {!! Form::checkbox('conforme_previsto', 'Conforme previsto na presente Ordem de Serviço', false) !!} Conforme previsto na presente Ordem de Serviço</p>
+            </div>
+            <div class="row">
+              <p>2. {!! Form::checkbox('conforme_forca_maior', 'Conforme a seguir, por motivo de força maior',  false) !!} Conforme a seguir, por motivo de força maior.</p>
+            </div>
+            @else
+              <div class="row">
+                <p>b) 1. {!! Form::checkbox('conforme_previsto', 'Conforme previsto na presente Ordem de Serviço') !!} Conforme previsto na presente Ordem de Serviço</p>
+              </div>
+              <div class="row">
+                <p>2. {!! Form::checkbox('conforme_forca_maior', 'Conforme a seguir, por motivo de força maior') !!} Conforme a seguir, por motivo de força maior.</p>
+              </div>
+          @endif
+
           <div class="row">
             <p>1/2 diária - Qtd: {!! Form::text('qt_meia_diaria', null, array('size'=>'3', 'id'=>'qt_meia_diaria')) !!} referente a localidade de {!! Form::text('localidade_meia_diaria', null, array('size'=>'25')) !!}</p>
           </div>
@@ -663,6 +673,9 @@ $val4 = Session::get('val4');
           <br><br>
           <strong>Obs.: O solicitante NÃO poderá editar ou excluir a OS após a conclusão da mesma!:</strong> &nbsp&nbsp&nbsp&nbsp
         @endif
+@if ($url_adm)
+  <input type="hidden" name="caminho" value="{{ $url_adm}}">
+@endif
 
       </div>
       <br>
@@ -676,4 +689,7 @@ $val4 = Session::get('val4');
         @endif
         <input type="submit" name="envia" id="sub" value="Salvar" class="btn btn-primary">
         {{ Form::reset('Limpar', array('class'=>'btn btn-danger')) }}
+      @endif
+      @if ($url_adm)
+          {{ $url_adm }}
       @endif

@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Html;
+
 use App\Pessoa;
 use App\Trecho;
 use App\Valor;
@@ -81,10 +82,11 @@ class DashboardController extends Controller
 
   public function admin()
   {
+    $url_edita = $_SERVER['PHP_SELF'];
 
     $diaria = Diaria::orderBy('id', 'DESC')->paginate(1000);
     //$diaria = Diaria::orderBy('id', 'DESC')->paginate(5);
-    return view('adm.adms',compact('diaria'));
+    return view('adm.adms',compact('diaria', 'url_edita'));
 
   }
 
@@ -162,6 +164,8 @@ class DashboardController extends Controller
       throw new ModelNotFoundException("Ordem de serviço não encontrada!");
 
     }
+    $url_adm = $request->url;
+
     $administrador = Session::get('administrador');
 
     $apresenta = $request->apresenta;
@@ -190,7 +194,7 @@ class DashboardController extends Controller
     ->first();
     $posto_chefe = $p_chefe->pgabrev;
 
-    return view('ficha.edit', compact('diaria', 'administrador', 'apresenta', 'select', 'posto_chefe', 'nome_chefe'));
+    return view('ficha.edit', compact('diaria', 'administrador', 'apresenta', 'select', 'posto_chefe', 'nome_chefe', 'url_adm'));
   }
 
   public function show($id)
@@ -259,9 +263,14 @@ class DashboardController extends Controller
       throw new ModelNotFoundException("OS não encontrada!");
     }
 
+    $url_recebida = $request->caminho;
+
     $data = $request->all();
     $diaria->fill($data)->save();
     Session::flash('mensagem_edit', "Ordem de Serviço editada com Sucesso!");
+    if ($url_recebida ==  '/index.php/verTodasOs') {
+      return redirect()->route('verTodasOs');
+    }
     return redirect()->route('ficha.index');
   }
 

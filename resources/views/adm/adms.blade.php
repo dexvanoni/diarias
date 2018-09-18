@@ -110,7 +110,7 @@
               <td style="width: 35%" >
                 <ul class="list-inline list-small">
                   <li title="Editar">
-                    <a href="{{ route('ficha.edita', ['diarias' => $diarias->id, 'apresenta'=>'editando']) }}" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+                    <a href="{{ route('ficha.edita', ['diarias' => $diarias->id, 'apresenta'=>'editando', 'url'=>$url_edita]) }}" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
                   </li>
                   <li>|</li>
                   <li title="Imprimir">
