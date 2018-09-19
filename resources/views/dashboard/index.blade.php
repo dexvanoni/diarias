@@ -42,14 +42,17 @@
           @if ($administrador)
             <li><a href="{{ route('verTodasOs') }}">Administração</a></li>
           @endif
+          <!--retirada aprovação do chefe imediato
           @php
           $ofs = array("9", "10", "11", "4", "5", "8", "24", "27", "1", "3", "7", "2", "6");
           @endphp
+
           @if (in_array($usuario->pespostograd, $ofs))
             <li><a href="{{ route('aprova') }}">Aprovação</a></li>
           @endif
+          -->
           <li role="separator" class="divider"></li>
-          <li><a href="{{ route('account-sign-out') }}"> Logut </a></li>
+          <li><a href="{{ route('account-sign-out') }}"> Logout </a></li>
         </ul>
       </div>
     </div>

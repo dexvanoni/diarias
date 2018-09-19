@@ -78,7 +78,7 @@
             <th>SARAM</th>
             <th>Referente a</th>
             <th>Serviço</th>
-            <th>Aprovação</th>
+            <!--<th>Aprovação</th>-->
             <th>Status</th>
             <th>Ações</th>
           </tr></center>
@@ -90,6 +90,7 @@
               <td style="width: 10%" >{{ $diarias->saram }}</td>
               <td style="width: 20%" >{{ $diarias->pnome}}</td>
               <td style="width: 20%">{{ $diarias->servico }}</td>
+              <!-- Retirada aprovação do chefe imediato
               <td style="width: 10%; text-align: center">
                 @if ($diarias->ok_chefe_im == 'a')
                   <span title="Aguardando aprovação" class="glyphicon glyphicon-time" aria-hidden="true"></span>
@@ -98,7 +99,7 @@
                 @elseif ($diarias->ok_chefe_im == 'n')
                   <span title="OS Recusada!" class=" glyphicon glyphicon-remove " aria-hidden="true"></span>
                 @endif
-              </td>
+              </td>-->
               <td style="width: 10%">
                 @if ($diarias->concluido == 'SIM')
                   <label title="Ordem de Serviço concluída! NÃO pode ser editada ou excluída." style="color: red">Concluída</label>
@@ -112,6 +113,19 @@
                     <li title="Imprimir">
                       <a href="{{ route('ficha.impressao', ['diarias' => $diarias->id]) }}" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-print" aria-hidden="true"></span></a>
                     </li>
+                    <li>|</li>
+                    <li title="Editar">
+                      <a href="{{ route('ficha.edita', ['diarias' => $diarias->id, 'apresenta'=>'editando']) }}" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+                    </li>
+                    <li>|</li>
+                    <li title="Excluir">
+                      <form action="{{ route('ficha.destroy', ['diarias' => $diarias->id]) }}" onsubmit="return confirm('\nTem certeza que deseja excluir esta OS?'); return false;" method="post">
+                        {{ csrf_field() }}
+                        {{ method_field('DELETE') }}
+                        <button type="submit" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                      </form>
+                    </li>
+                    <!-- retirada aprovação do chefe imediato
                     @if ($diarias->ok_chefe_im != 'y')
                       <li>|</li>
                       <li title="Editar">
@@ -125,7 +139,7 @@
                           <button type="submit" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
                         </form>
                       </li>
-                    @endif
+                    @endif-->
                   @else
                     <li title="Ver">
                       <a href="{{ route('ficha.edita', ['diarias' => $diarias->id, 'apresenta'=>'apresenta']) }}" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-open-file" aria-hidden="true"></span></a>

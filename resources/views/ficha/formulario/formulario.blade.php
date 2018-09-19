@@ -360,21 +360,21 @@ $val4 = Session::get('val4');
 <p></p>
 
 <div class="row">
-  <div title="Informe o nome do Chefe Imediato para autorização" class="col-md-12">
+  <div title="Informe o nome do Chefe Imediato" class="col-md-12">
     <div class="input-group">
       @if ($tela=='create')
         {!! Form::open(['method'=> 'GET',
           'action'=>'DashboardController@create']) !!}
-          {!! Form::label('chefe_im', 'Selecione o seu chefe imediato para autorização:') !!}
+          {!! Form::label('chefe_im', 'Selecione o seu chefe imediato:') !!}
           {!! Form::select('chefe_im', $select, null, ['class'=>'form-control']) !!}
           <label style="color: red">*Lista de oficiais cadastrados no SIMS</label>
         @elseif ($tela == 'edit')
-          <strong>Chefe imediato para aprovação: <br>
+          <strong>Chefe imediato: <br>
             SARAM</strong> {{ $diaria->chefe_im }} <br>
             <strong>Nome: </strong>{{ $posto_chefe }} {{ $nome_chefe }} <br>
 
             @if ($diaria->ok_chefe_im == 'a')
-              <h5 style="color: red"><strong>AGUARDANDO AUTORIZAÇÃO DO CHEFE IMEDIATO!</strong></h5>
+
               <strong>Alterar Chefe imediato?</strong>
               {!! Form::radio('alt_chefe_im', 'SIM', null, ['id'=>'alt_chefe_im_s']) !!}SIM&nbsp&nbsp&nbsp
               {!! Form::radio('alt_chefe_im', 'NÃO', null, ['id'=>'alt_chefe_im_n', 'checked'=>'checked']) !!}NÃO
@@ -382,23 +382,13 @@ $val4 = Session::get('val4');
               <div class="col-md-12" id="alt_chefe">
                 {!! Form::open(['method'=> 'GET',
                   'action'=>'DashboardController@create']) !!}
-                  {!! Form::label('chefe_im', 'Selecione o seu chefe imediato para autorização:') !!}
+                  {!! Form::label('chefe_im', 'Selecione o seu chefe imediato:') !!}
                   {!! Form::select('chefe_im', $select, null, ['class'=>'form-control']) !!}
 
                   <label style="color: red">*Lista de oficiais cadastrados no SIMS</label>
                 </div>
-              @elseif ($diaria->ok_chefe_im == 'n')
-                <h5 style="color: red"><strong>NÃO AUTORIZADO PELO CHEFE IMEDIATO!</strong></h5>
-              @elseif ($diaria->ok_chefe_im == 'y')
-                <h5 style="color: red"><strong>VERIFICADO E APROVADO PELO CHEFE IMEDIATO!</strong></h5>
-              @endif
-              @if ($diaria->chefe_im == $don)
-                <strong>AUTORIZAÇÃO</strong>
-                {!! Form::radio('ok_chefe_im', 'y', null, ['id'=>'ok_chefe_im_s']) !!}SIM&nbsp&nbsp&nbsp
-                {!! Form::radio('ok_chefe_im', 'n', null, ['id'=>'ok_chefe_im_n']) !!}NÃO
               @endif
             @endif
-
           </div>
         </div>
       </div>
@@ -673,9 +663,6 @@ $val4 = Session::get('val4');
           <br><br>
           <strong>Obs.: O solicitante NÃO poderá editar ou excluir a OS após a conclusão da mesma!:</strong> &nbsp&nbsp&nbsp&nbsp
         @endif
-@if ($url_adm)
-  <input type="hidden" name="caminho" value="{{ $url_adm}}">
-@endif
 
       </div>
       <br>
@@ -689,7 +676,4 @@ $val4 = Session::get('val4');
         @endif
         <input type="submit" name="envia" id="sub" value="Salvar" class="btn btn-primary">
         {{ Form::reset('Limpar', array('class'=>'btn btn-danger')) }}
-      @endif
-      @if ($url_adm)
-          {{ $url_adm }}
       @endif

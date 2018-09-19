@@ -163,21 +163,14 @@
         <!--ASSINATURAS-->
         <div class="tabela_ass">
           @if ($om == 'GAP-CG' )
-            @if ($diaria->ok_chefe_im == 'y')
+
               <div class="proponho">
                 30 - PROPONHO:<br><br>
                 <label style="margin: 0px; padding: 0">_________________________________________________</label>
-                <center><strong><label style="text-size:10px">AUTORIZADO no sistema ATRIX por:</label></strong></center>
-                <center><label style="text-size:7px">SARAM: {{ $diaria->chefe_im }} - {{ $nome_chefe }} {{ $posto_chefe }}</label></center>
-                <center>CHEFE DA DIVISÃO</center>
+                <center><label style="text-size:7px">SARAM: {{ $diaria->chefe_im }} </label></center>
+                <center> <label>{{ $nome_chefe }} {{ $posto_chefe }}</label> </center>
               </div>
-              @else
-                <div class="proponho">
-                  30 - PROPONHO:<br><br>
-                  <center> ________________________________________</center>
-                  <center>CHEFE DA DIVISÃO</center>
-                </div>
-            @endif
+
             <div class="autorizo">
               31 - AUTORIZO:<br><br>
               <center>________________________________________ </center>
@@ -185,36 +178,32 @@
               <center style="margin-left: 27em">CHEFE DO GAP-CG</center><br>
             </div>
           @elseif ($om == 'ALA 5')
-            @if ($diaria->ok_chefe_im == 'y')
-              <div class="proponho">
-                30 - PROPONHO:<br><br>
-                <center><strong><label style="text-size:10px">AUTORIZADO no sistema ATRIX por:</label></strong></center>
-                <center><label style="text-size:7px">SARAM: {{ $diaria->chefe_im }} - {{ $nome_chefe }} {{ $posto_chefe }}</label></center>
-                <center>CMT ESQUADRÃO</center>
-              </div>
-              @else
-                <div class="proponho">
-                  30 - PROPONHO:<br><br>
-                  <center> ________________________________________</center>
-                  <center>CMT ESQUADRÃO</center>
-                </div>
-            @endif
+            <div class="proponho">
+              30 - PROPONHO:<br><br>
+              <label style="margin: 0px; padding: 0">_________________________________________________</label>
+              <center><label style="text-size:7px">SARAM: {{ $diaria->chefe_im }} </label></center>
+              <center> <label>{{ $nome_chefe }} {{ $posto_chefe }}</label> </center>
+            </div>
+
             <div class="autorizo">
               31 - AUTORIZO:<br><br>
               <center>________________________________________ </center>
               <center>{{ $cmt_ala->nome_completo }} - {{ $cmt_ala->posto_grad }}</center>
               <center style="margin-left: 27em">COMANDANTE DA ALA-5</center><br>
             </div>
-          @else
+          @elseif ($om == 'ESCG')
             <div class="proponho">
               30 - PROPONHO:<br><br>
-              <center> ________________________________________</center>
-              <center>CMT ESQUADRÃO</center>
+              <label style="margin: 0px; padding: 0">_________________________________________________</label>
+              <center><label style="text-size:7px">SARAM: {{ $diaria->chefe_im }} </label></center>
+              <center> <label>{{ $nome_chefe }} {{ $posto_chefe }}</label> </center>
             </div>
+
             <div class="autorizo">
-              31 - AUTORIZO:<br>
+              31 - AUTORIZO:<br><br>
               <center>________________________________________ </center>
-              <center>COMANDANTE DA ALA-5</center><br>
+              <center>{{ $cmt_escg->nome_completo }} - {{ $cmt_escg->posto_grad }}</center>
+              <center style="margin-left: 27em">COMANDANTE DO ESCG</center><br>
             </div>
           @endif
         </div>

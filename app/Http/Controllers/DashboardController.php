@@ -57,8 +57,8 @@ class DashboardController extends Controller
     return redirect()->route('ficha.index');
 
   }
-
-  public function aprova()
+// Retirado aprovação do chefe imediato 18/09/2018
+/*  public function aprova()
   {
     $sar = Session::get('dono');
     $diaria = DB::table('diarias')
@@ -68,7 +68,7 @@ class DashboardController extends Controller
     return view('adm.aprova',compact('diaria'));
 
   }
-
+*/
   public function index()
   {
 
@@ -123,7 +123,9 @@ class DashboardController extends Controller
 
     $posto = DB::table('public'. "." .'tb_pessoas')
     ->whereIn('pespostograd', [9, 10, 11, 4, 5, 8, 24, 27, 1, 3, 7, 2, 6])
-    ->orderBy('pesnguerra', 'asc')
+    ->where('pessituacao', '=', '4')
+    ->orderBy('pespostograd', 'ASC')
+    ->orderBy('pesnguerra', 'ASC')
     ->get();
 
     $select = [];
@@ -172,7 +174,9 @@ class DashboardController extends Controller
 
     $posto = DB::table('public'. "." .'tb_pessoas')
     ->whereIn('pespostograd', [9, 10, 11, 4, 5, 8, 24, 27, 1, 3, 7, 2, 6])
-    ->orderBy('pesnguerra', 'asc')
+    ->where('pessituacao', '=', '4')
+    ->orderBy('pespostograd', 'ASC')
+    ->orderBy('pesnguerra', 'ASC')
     ->get();
 
     $select = [];
@@ -194,7 +198,9 @@ class DashboardController extends Controller
     ->first();
     $posto_chefe = $p_chefe->pgabrev;
 
+
     return view('ficha.edit', compact('diaria', 'administrador', 'apresenta', 'select', 'posto_chefe', 'nome_chefe', 'url_adm'));
+
   }
 
   public function show($id)
@@ -227,9 +233,10 @@ class DashboardController extends Controller
     $cmt_ala =  Chefe::where('cargo', '=', 'COMANDANTE DA ALA-5')->first();
     $ch_gap =  Chefe::where('cargo', '=', 'CHEFE DO GAP-CG')->first();
     $ordenador =  Chefe::where('cargo', '=', 'ORDENADOR DE DESPESAS')->first();
+    $cmt_escg =  Chefe::where('cargo', '=', 'COMANDANTE DO ESCG')->first();
 
     Session::flash('mensagem_print', 'Ordem de serviço enviada a impressora!');
-    return view('ficha.impressao', compact('diaria', 'posto_chefe', 'nome_chefe', 'cmt_ala', 'ch_gap', 'ordenador'));
+    return view('ficha.impressao', compact('diaria', 'posto_chefe', 'nome_chefe', 'cmt_ala', 'ch_gap', 'ordenador', 'cmt_escg'));
   }
 
   public function print_verso($id){
@@ -251,9 +258,10 @@ class DashboardController extends Controller
     $cmt_ala =  Chefe::where('cargo', '=', 'COMANDANTE DA ALA-5')->first();
     $ch_gap =  Chefe::where('cargo', '=', 'CHEFE DO GAP-CG')->first();
     $ordenador =  Chefe::where('cargo', '=', 'ORDENADOR DE DESPESAS')->first();
+    $cmt_escg =  Chefe::where('cargo', '=', 'COMANDANTE DO ESCG')->first();
 
     Session::flash('mensagem_print', 'Ordem de serviço enviada a impressora!');
-    return view('ficha.impressao_verso', compact('diaria', 'posto_chefe', 'nome_chefe', 'cmt_ala', 'ch_gap', 'ordenador'));
+    return view('ficha.impressao_verso', compact('diaria', 'posto_chefe', 'nome_chefe', 'cmt_ala', 'ch_gap', 'ordenador', 'cmt_escg'));
   }
 
 
